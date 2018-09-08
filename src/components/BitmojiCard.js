@@ -5,7 +5,7 @@ export default ({bitmoji: {src, tags}}) => {
 
   return (
     <li className='flex-container column center-cross margin-m'>
-      <img src={source} alt='' />
+      <img src={source} alt={`bitmoji ${tags[0]}`} />
       <ul>
         { tags.map(tag => <li className='font-s' key={tag}>{tag}</li>) }
       </ul>

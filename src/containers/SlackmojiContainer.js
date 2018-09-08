@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import BitmojiCard from '../components/BitmojiCard'
-import DisplayFilter from '../components/DisplayFilter'
+import DisplayRadio from '../components/DisplayRadio'
+import SearchField from '../components/SearchField'
 import SlackAdapter from '../helpers/SlackAdapter'
+import Debounce from '../helpers/Debounce'
 
 export default class SlackmojiContainer extends Component {
   state = {
@@ -21,18 +23,20 @@ export default class SlackmojiContainer extends Component {
       })
   }
 
-  changeDisplay = (e) => {
-    const {name, value} = e.target
+  changeDisplay = ({target: {name, value}}) => {
     this.setState({[name]: value})
   }
 
-  filteredBitmojis = () => {
+  filteredBitmojis() {
     const {display, search} = this.state
     const bitmojis = this.state[display]
-    return !!search ? bitmojis.filter(bitmoji => this.matchingTag(bitmoji, search)) : bitmojis
+
+    if (!search) return bitmojis
+
+    return bitmojis.filter(bitmoji => this.matchesSearch(bitmoji, search))
   }
 
-  matchingTag = (bitmoji, search) => {
+  matchesSearch(bitmoji, search) {
     return bitmoji.tags.some(tag => {
       return tag.toLowerCase().includes(search.toLowerCase())
     })
@@ -43,10 +47,18 @@ export default class SlackmojiContainer extends Component {
 
     return (
       <div>
-        <DisplayFilter
-          display={this.state.display}
-          changeDisplay={this.changeDisplay}
-        />
+        <div>
+          <DisplayRadio
+            display={this.state.display}
+            changeDisplay={this.changeDisplay}
+          />
+          <SearchField
+            search={this.state.search}
+            changeDisplay={Debounce(
+              this.changeDisplay,
+              500)}
+          />
+        </div>
         <ul className='flex-container wrap center'>
           {bitmojis.map(bitmoji => (
             <BitmojiCard
