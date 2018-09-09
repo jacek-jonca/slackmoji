@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
+import DisplayControls from '../components/DisplayControls'
 import BitmojiCard from '../components/BitmojiCard'
-import DisplayRadio from '../components/DisplayRadio'
-import SearchField from '../components/SearchField'
 import SlackAdapter from '../helpers/SlackAdapter'
-import Debounce from '../helpers/Debounce'
 
 export default class SlackmojiContainer extends Component {
   state = {
@@ -19,7 +17,7 @@ export default class SlackmojiContainer extends Component {
         this.setState({
           solo: resp.solo,
           friends: resp.friends
-        })
+        }, this.props.stopLoading)
       })
   }
 
@@ -32,7 +30,6 @@ export default class SlackmojiContainer extends Component {
     const bitmojis = this.state[display]
 
     if (!search) return bitmojis
-
     return bitmojis.filter(bitmoji => this.matchesSearch(bitmoji, search))
   }
 
@@ -45,21 +42,19 @@ export default class SlackmojiContainer extends Component {
   render() {
     const bitmojis = this.filterBitmojis()
 
-    return [
-      <DisplayRadio
-        display={this.state.display}
-        changeDisplay={this.changeDisplay}
-        key='radio'
-      />,
-      <SearchField
-        search={this.state.search}
-        changeDisplay={Debounce(
-          this.changeDisplay,
-          500)
-        }
-        key='search'
+    return (
+      [
+        <DisplayControls
+          loading={this.props.loading}
+          search={this.state.search}
+          display={this.state.display}
+          changeDisplay={this.changeDisplay}
+          key='display-controls'
         />,
-        <ul className='bitmoji-list flex wrap center' key='bitmoji-list'>
+        <ul
+          className='bitmoji-list flex wrap center'
+          key='bitmoji-list'
+        >
           {bitmojis.map(bitmoji => (
             <BitmojiCard
               bitmoji={bitmoji}
@@ -67,6 +62,7 @@ export default class SlackmojiContainer extends Component {
             />
           ))}
         </ul>
-    ]
+      ]
+    )
   }
 }

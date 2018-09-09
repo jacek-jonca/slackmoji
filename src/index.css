@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fredoka+One|Prompt');
 
 body {
+  height: 100vh;
   margin: 0px;
   padding: 0px;
   font-family: 'Fredoka One', cursive;
@@ -33,6 +34,8 @@ ul {
   font-size: small;
 }
 
+/* spacing */
+
 .margin-m {
   margin: 10px;
 }
@@ -60,6 +63,23 @@ ul {
     "b-list b-list b-list b-list b-list";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 2fr 1fr auto;
+}
+
+.load-screen {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "loader"
+    "b-list";
+  grid-template-columns: auto;
+  grid-template-rows: 1fr auto auto;
+}
+
+.loader {
+  grid-area: loader;
+  justify-self: center;
+  align-self: center;
+  margin: 15px;
 }
 
 .header {
