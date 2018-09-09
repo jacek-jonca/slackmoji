@@ -4,6 +4,10 @@ body {
   height: 100vh;
   margin: 0px;
   padding: 0px;
+  font-family: 'Prompt', sans-serif;
+}
+
+h1, h2, h3, h4 {
   font-family: 'Fredoka One', cursive;
 }
 
@@ -12,8 +16,8 @@ input {
   border-radius: 5px;
 }
 
-li {
-  font-family: 'Prompt', sans-serif;
+label {
+  font-size: 1.2em;
 }
 
 ul {
