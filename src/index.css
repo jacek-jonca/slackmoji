@@ -28,6 +28,7 @@ ul {
   border-color: black;
   border-radius: 5px;
   margin: 5px;
+  background-color: #FFF564;
 }
 
 .font-s {
@@ -40,16 +41,12 @@ ul {
   margin: 10px;
 }
 
-.padding-ls {
-  padding-left: 7px;
+.padding-s {
+  padding: 7px;
 }
 
-.padding-bs{
-  padding-bottom: 7px;
-}
-
-.column-2 {
-  column-count: 2;
+.center-text {
+  text-align: center;
 }
 
 
@@ -77,15 +74,11 @@ ul {
 
 .loader {
   grid-area: loader;
-  justify-self: center;
-  align-self: center;
   margin: 15px;
 }
 
 .header {
   grid-area: header;
-  justify-self: stretch;
-  text-align: center;
   background: #fff241;
   background: -webkit-linear-gradient(to bottom, #fff241, #ff7a1e);
   background: linear-gradient(to bottom, #fff241, #ff7a1e);
@@ -93,13 +86,10 @@ ul {
 
 .radio {
   grid-area: radio;
-  justify-self: center;
-  align-self: center;
 }
 
 .search {
   grid-area: search;
-  align-self: center;
 }
 
 .bitmoji-list {
@@ -124,10 +114,17 @@ ul {
   justify-content: center;
 }
 
-.stretch {
-  justify-content:
-}
-
 .center-cross {
   align-items: center;
 }
+
+.center-self {
+  justify-self: center;
+}
+
+.flex-1 {
+  flex: 1;
+  flex-basis: auto;
+}
+
+

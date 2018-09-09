@@ -17,7 +17,7 @@ class App extends Component {
 
     return (
       <div className={className}>
-        <div className='header'>
+        <div className='header center-text'>
           <h1>
             SlackMoji
           </h1>

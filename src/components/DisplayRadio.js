@@ -5,7 +5,7 @@ const radioButton = (value, {display, changeDisplay}) => {
   const checked = value === display
 
   return (
-    <div className='margin-m flex column center-cross'>
+    <div className='margin-m'>
       <label>{`Bitmoji ${label}`}</label>
       <input
         type='radio'
@@ -13,6 +13,7 @@ const radioButton = (value, {display, changeDisplay}) => {
         value={value}
         onChange={changeDisplay}
         checked={checked}
+        className='margin-m'
       />
     </div>
   )
@@ -20,7 +21,7 @@ const radioButton = (value, {display, changeDisplay}) => {
 
 export default (props) => {
   return (
-    <div className='radio flex'>
+    <div className='radio flex center-self center-cross'>
       {radioButton('solo', props)}
       {radioButton('friends', props)}
     </div>
