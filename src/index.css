@@ -33,6 +33,25 @@ ul {
   background-color: #FFF564;
 }
 
+.load-image {
+  animation: rotate-image infinite 20s linear;
+}
+
+@keyframes rotate-image {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-30deg);
+  }
+}
+
 .font-s {
   font-size: small;
 }
@@ -40,6 +59,7 @@ ul {
 .border-b {
   border-bottom: 1px solid black;
 }
+
 
 /* spacing */
 
