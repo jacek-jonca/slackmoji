@@ -16,7 +16,7 @@ export default ({bitmoji: {src, tags}}) => {
         alt={`bitmoji ${tags[0]}`}
         className='border-b'
       />
-      <div className='flex center margin'>
+      <div className='flex margin'>
         <ul className='flex column align-start padding-rs'>
         { tagItems(tags1) }
         </ul>
