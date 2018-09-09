@@ -62,7 +62,7 @@ ul {
   display: grid;
   grid-template-areas:
     "header header header header header"
-    "radio radio search search search"
+    "radio radio search search ."
     "b-list b-list b-list b-list b-list";
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 2fr 1fr auto;
