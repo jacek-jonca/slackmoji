@@ -3,7 +3,6 @@ import DisplayRadio from '../components/DisplayRadio'
 import SearchField from '../components/SearchField'
 import debounce from '../helpers/debounce'
 
-
 export default ({
   loading,
   search,
