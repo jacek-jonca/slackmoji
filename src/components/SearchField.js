@@ -12,13 +12,12 @@ export default class SearchField extends Component {
 
   render() {
     return(
-      <div>
-        <input
-          type='text'
-          name='search'
-          onChange={this.handleChange}
-        />
-      </div>
+      <input className='search margin-m'
+        type='text'
+        name='search'
+        onChange={this.handleChange}
+        placeholder='Search for keywords'
+      />
     )
   }
 }

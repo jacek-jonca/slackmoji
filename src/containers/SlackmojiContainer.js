@@ -27,7 +27,7 @@ export default class SlackmojiContainer extends Component {
     this.setState({[name]: value})
   }
 
-  filteredBitmojis() {
+  filterBitmojis() {
     const {display, search} = this.state
     const bitmojis = this.state[display]
 
@@ -43,23 +43,23 @@ export default class SlackmojiContainer extends Component {
   }
 
   render() {
-    const bitmojis = this.filteredBitmojis()
+    const bitmojis = this.filterBitmojis()
 
-    return (
-      <div>
-        <div>
-          <DisplayRadio
-            display={this.state.display}
-            changeDisplay={this.changeDisplay}
-          />
-          <SearchField
-            search={this.state.search}
-            changeDisplay={Debounce(
-              this.changeDisplay,
-              500)}
-          />
-        </div>
-        <ul className='flex-container wrap center'>
+    return [
+      <DisplayRadio
+        display={this.state.display}
+        changeDisplay={this.changeDisplay}
+        key='radio'
+      />,
+      <SearchField
+        search={this.state.search}
+        changeDisplay={Debounce(
+          this.changeDisplay,
+          500)
+        }
+        key='search'
+        />,
+        <ul className='bitmoji-list flex wrap center' key='bitmoji-list'>
           {bitmojis.map(bitmoji => (
             <BitmojiCard
               bitmoji={bitmoji}
@@ -67,7 +67,6 @@ export default class SlackmojiContainer extends Component {
             />
           ))}
         </ul>
-      </div>
-    )
+    ]
   }
 }
