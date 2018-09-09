@@ -23,9 +23,7 @@ ul {
 
 .bitmoji-card {
   width: 200px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  border: 1px solid black;
   border-radius: 5px;
   margin: 5px;
   background-color: #FFF564;
@@ -35,14 +33,22 @@ ul {
   font-size: small;
 }
 
+.border-b {
+  border-bottom: 1px solid black;
+}
+
 /* spacing */
 
-.margin-m {
+.margin {
   margin: 10px;
 }
 
-.padding-s {
-  padding: 7px;
+.padding-rs {
+  padding-right: 5px;
+}
+
+.padding-ls {
+  padding-left: 5px;
 }
 
 .center-text {
@@ -122,9 +128,6 @@ ul {
   justify-self: center;
 }
 
-.flex-1 {
-  flex: 1;
-  flex-basis: auto;
+.align-start {
+  justify-content: flex-start;
 }
-
-
