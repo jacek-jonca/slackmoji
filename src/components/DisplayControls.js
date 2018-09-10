@@ -5,7 +5,6 @@ import debounce from '../helpers/debounce'
 
 export default ({
   loading,
-  search,
   display,
   changeDisplay
 }) => {
