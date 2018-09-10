@@ -1,10 +1,9 @@
 export default (func, time) => {
 	let timeout
 	return function() {
-		const args = arguments
 		const later = () => {
       timeout = null
-			func.apply(null, args)
+			func.apply(null, arguments)
 		}
 		clearTimeout(timeout)
 		timeout = setTimeout(later, time)

@@ -18,7 +18,6 @@ export default ({
       key='radio'
     />,
     <SearchField
-      search={search}
       changeDisplay={debounce(
         changeDisplay,
         500)

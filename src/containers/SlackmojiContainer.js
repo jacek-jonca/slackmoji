@@ -33,7 +33,6 @@ export default class SlackmojiContainer extends Component {
       [
         <DisplayControls
           loading={this.props.loading}
-          search={this.state.search}
           display={this.state.display}
           changeDisplay={this.changeDisplay}
           key='display-controls'
