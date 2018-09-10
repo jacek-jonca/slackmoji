@@ -30,13 +30,13 @@ export default class Loader extends Component {
   render() {
     return (
       <div className='loader flex column center-cross'>
-      <div>
-        <img
-        src='faces/heart-ring.png'
-        alt='me'
-        className='load-image'
-        />
-      </div>
+        <div>
+          <img
+          src='faces/heart-ring.png'
+          alt='me'
+          className='load-image'
+          />
+        </div>
         <h2 className='loading-text center-text'>
           {this.state.text}
         </h2>

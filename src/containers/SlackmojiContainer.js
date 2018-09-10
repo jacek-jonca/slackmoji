@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DisplayControls from '../components/DisplayControls'
-import BitmojiCard from '../components/BitmojiCard'
+import BitmojiResults from './BitmojiResults'
 
 export default class SlackmojiContainer extends Component {
   state = {
@@ -28,6 +28,7 @@ export default class SlackmojiContainer extends Component {
 
   render() {
     const bitmojis = this.filterBitmojis()
+    const noResults = !this.props.loading && !bitmojis.length
 
     return (
       [
@@ -37,17 +38,10 @@ export default class SlackmojiContainer extends Component {
           changeDisplay={this.changeDisplay}
           key='display-controls'
         />,
-        <ul
-          className='bitmoji-list flex wrap center'
-          key='bitmoji-list'
-        >
-          {bitmojis.map(bitmoji => (
-            <BitmojiCard
-              bitmoji={bitmoji}
-              key={bitmoji.comic_id}
-            />
-          ))}
-        </ul>
+        <BitmojiResults
+          noResults={noResults}
+          bitmojis={bitmojis}
+        />
       ]
     )
   }
