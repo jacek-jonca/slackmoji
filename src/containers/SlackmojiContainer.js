@@ -41,6 +41,7 @@ export default class SlackmojiContainer extends Component {
         <BitmojiResults
           noResults={noResults}
           bitmojis={bitmojis}
+          key='results'
         />
       ]
     )
