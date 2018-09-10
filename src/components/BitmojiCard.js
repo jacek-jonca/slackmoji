@@ -8,7 +8,7 @@ const tagItems = (tags) => {
 
 export default ({bitmoji: {src, tags}}) => {
   const {tags1, tags2} = splitTags(tags)
-  
+
   return (
     <li className='bitmoji-card flex-container column'>
       <img
@@ -17,10 +17,10 @@ export default ({bitmoji: {src, tags}}) => {
         className='border-b'
       />
       <div className='flex margin'>
-        <ul className='flex column align-start padding-rs'>
+        <ul className='flex column align-start flex-1 padding-rs'>
         { tagItems(tags1) }
         </ul>
-        <ul className='flex column align-start padding-ls'>
+        <ul className='flex column align-start flex-1 padding-ls'>
         { tagItems(tags2) }
         </ul>
       </div>

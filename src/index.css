@@ -155,3 +155,7 @@ ul {
 .align-start {
   justify-content: flex-start;
 }
+
+.flex-1 {
+  flex: 1;
+}
