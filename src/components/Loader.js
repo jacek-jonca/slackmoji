@@ -10,14 +10,19 @@ export default class Loader extends Component {
   }
 
   showText = () => {
-    const {i, text} = this
-    if (i < text.length) {
+    if (this.i < this.text.length) {
+      this.incrementLetter()
       this.timeout = setTimeout(this.showText, 60)
-      this.setState((prevState) => ({text: prevState.text + text.charAt(i)}),
-      () => this.i = i+1
-    )}
+    }
   }
-  
+
+  incrementLetter = () => {
+    this.setState(prevState => {
+      const text = prevState.text + this.text.charAt(this.i)
+      return {text}
+    }, () => this.i = this.i+1)
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timeout)
   }

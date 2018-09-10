@@ -1,24 +1,11 @@
 import React, { Component } from 'react'
 import DisplayControls from '../components/DisplayControls'
 import BitmojiCard from '../components/BitmojiCard'
-import SlackAdapter from '../helpers/SlackAdapter'
 
 export default class SlackmojiContainer extends Component {
   state = {
-    solo: [],
-    friends: [],
     display: 'solo',
     search: ''
-  }
-
-  componentDidMount() {
-    SlackAdapter.getSlackmoji()
-      .then(resp => {
-        this.setState({
-          solo: resp.solo,
-          friends: resp.friends
-        }, this.props.stopLoading)
-      })
   }
 
   changeDisplay = ({target: {name, value}}) => {
@@ -27,7 +14,7 @@ export default class SlackmojiContainer extends Component {
 
   filterBitmojis() {
     const {display, search} = this.state
-    const bitmojis = this.state[display]
+    const bitmojis = this.props[display]
 
     if (!search) return bitmojis
     return bitmojis.filter(bitmoji => this.matchesSearch(bitmoji, search))

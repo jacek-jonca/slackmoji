@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import Loader from './components/Loader'
 import SlackmojiContainer from './containers/SlackmojiContainer'
+import SlackAdapter from './helpers/SlackAdapter'
+
 
 class App extends Component {
   state = {
-    loading: true
+    loading: true,
+    solo: [],
+    friends: []
   }
 
-  stopLoading = () => {
-    this.setState({loading: false})
+  componentDidMount() {
+    SlackAdapter.getSlackmoji()
+      .then(resp => {
+        this.setState({
+          solo: resp.solo,
+          friends: resp.friends,
+          loading: false
+        })
+      })
   }
 
   render() {
@@ -26,12 +37,7 @@ class App extends Component {
           </h3>
         </div>
         { loading && <Loader /> }
-        <SlackmojiContainer
-          loading={this.state.loading}
-          stopLoading={this.stopLoading}
-          solo={this.state.solo}
-          friends={this.state.friends}
-        />
+        <SlackmojiContainer {...this.state} />
       </div>
     )
   }
