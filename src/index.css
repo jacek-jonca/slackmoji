@@ -33,6 +33,16 @@ ul {
   background-color: #FFF564;
 }
 
+.bitmoji-preview {
+  opacity: 1;
+  transition: opacity 0.3s;
+  border-bottom: 1px solid black;
+}
+
+.bitmoji-preview[data-src] {
+  opacity: 0;
+}
+
 .load-image {
   animation: rotate-image infinite 15s linear;
 }
@@ -50,14 +60,6 @@ ul {
   75% {
     transform: rotate(-15deg);
   }
-}
-
-.font-s {
-  font-size: small;
-}
-
-.border-b {
-  border-bottom: 1px solid black;
 }
 
 

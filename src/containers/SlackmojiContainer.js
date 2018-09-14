@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import DisplayControls from '../components/DisplayControls'
 import BitmojiResults from './BitmojiResults'
+import {lazyLoad} from '../helpers/bitmoji'
 
 export default class SlackmojiContainer extends Component {
   state = {
     display: 'solo',
     search: ''
+  }
+  
+  componentDidUpdate(prevProps) {
+    lazyLoad()
   }
 
   changeDisplay = ({target: {name, value}}) => {
