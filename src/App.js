@@ -36,8 +36,10 @@ class App extends Component {
             What fun new Bitmojis can I use in Slack?
           </h3>
         </div>
-        { loading && <Loader /> }
-        <SlackmojiContainer {...this.state} />
+        { loading
+          ? <Loader />
+          : <SlackmojiContainer {...this.state} />
+        }
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DisplayControls from '../components/DisplayControls'
+import DisplayControls from '../containers/DisplayControls'
 import BitmojiResults from './BitmojiResults'
 
 export default class SlackmojiContainer extends Component {
