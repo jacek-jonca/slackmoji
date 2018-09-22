@@ -9,7 +9,7 @@ export default ({bitmojis}) => {
       className='bitmoji-list flex wrap center'
       key='bitmoji-list'
     >
-      {bitmojiList}
+      { bitmojiList }
     </ul>
   )
 }
