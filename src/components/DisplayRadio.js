@@ -1,6 +1,6 @@
 import React from 'react'
 
-const radioButton = (value, {display, changeDisplay}) => {
+const RadioButton = ({display, changeDisplay, value}) => {
   const label = value.replace(/^\w/, c => c.toUpperCase())
   const checked = value === display
 
@@ -22,8 +22,8 @@ const radioButton = (value, {display, changeDisplay}) => {
 export default (props) => {
   return (
     <div className='radio flex center-self center-cross'>
-      {radioButton('solo', props)}
-      {radioButton('friends', props)}
+      <RadioButton value={'solo'} {...props} />
+      <RadioButton value={'friends'} {...props} />
     </div>
   )
 }

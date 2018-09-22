@@ -4,11 +4,9 @@ import SearchField from '../components/SearchField'
 import debounce from '../helpers/debounce'
 
 export default ({
-  loading,
   display,
   changeDisplay
 }) => {
-  if (loading) return null
 
   return [
     <DisplayRadio
