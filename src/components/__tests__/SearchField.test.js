@@ -4,7 +4,6 @@ import SearchField from '../SearchField'
 
 describe('SearchField', () => {
   test('it renders an input', () => {
-    
     const { getByPlaceholderText } = render(<SearchField />)
         
     const searchNode = getByPlaceholderText('Search for keywords')

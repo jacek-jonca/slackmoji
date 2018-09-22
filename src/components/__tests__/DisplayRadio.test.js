@@ -4,12 +4,10 @@ import DisplayRadio from '../DisplayRadio'
 
 describe('Display Radio', () => {
   test('it renders radio buttons', () => {
-    
     const props = {
       display: 'solo',
       changeDisplay: console.log
     }
-    
     
     const { getByLabelText } = render(<DisplayRadio {...props} />)
     
