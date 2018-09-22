@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const {loading} = this.state
+    const {loading, solo, friends} = this.state
     const className = loading ? 'load-screen' : 'container'
 
     return (
@@ -38,7 +38,7 @@ class App extends Component {
         </div>
         { loading
           ? <Loader />
-          : <SlackmojiContainer {...this.state} />
+          : <SlackmojiContainer solo={solo} friends={friends} />
         }
       </div>
     )
