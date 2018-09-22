@@ -24,6 +24,6 @@ describe('Bitmoji Card', () => {
     const tagNode = container.querySelector('li')
     
     expect(container).toContainElement(image)
-    expect(tagNode).toHaveTextContent('koala')
+    expect(tagNode).toHaveTextContent(props.bitmoji.tags[0])
   })
 })
