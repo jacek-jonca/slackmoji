@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import DisplayRadio from '../components/DisplayRadio'
 import SearchField from '../components/SearchField'
 import debounce from '../helpers/debounce'
@@ -8,18 +8,20 @@ export default ({
   changeDisplay
 }) => {
 
-  return [
-    <DisplayRadio
-      display={display}
-      changeDisplay={changeDisplay}
-      key='radio'
-    />,
-    <SearchField
-      changeDisplay={debounce(
-        changeDisplay,
-        500)
-      }
-      key='search'
-    />
-  ]
+  return (
+    <Fragment>
+      <DisplayRadio
+        display={display}
+        changeDisplay={changeDisplay}
+        key='radio'
+      />
+      <SearchField
+        changeDisplay={debounce(
+          changeDisplay,
+          500)
+        }
+        key='search'
+      />
+    </Fragment>
+  )
 }
