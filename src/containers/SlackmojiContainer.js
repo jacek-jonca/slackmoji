@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import DisplayControls from '../containers/DisplayControls'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
@@ -29,17 +29,19 @@ export default class SlackmojiContainer extends Component {
 
   render() {
     const bitmojis = this.filterBitmojis()
-    const results = !bitmojis.length ? <NoResults key='no-results' /> : <BitmojiList bitmojis={bitmojis} key='bitmoji-list' />
 
     return (
-      [
+      <Fragment>
         <DisplayControls
           display={this.state.display}
           changeDisplay={this.changeDisplay}
           key='display-controls'
-        />,
-        results
-      ]
+        />
+        { !bitmojis.length 
+          ? <NoResults key='no-results' /> 
+          : <BitmojiList bitmojis={bitmojis} key='bitmoji-list' /> 
+        }
+      </ Fragment>
     )
   }
 }
