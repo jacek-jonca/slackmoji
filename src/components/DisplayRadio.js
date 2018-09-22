@@ -3,10 +3,12 @@ import React from 'react'
 const RadioButton = ({display, changeDisplay, value}) => {
   const label = value.replace(/^\w/, c => c.toUpperCase())
   const checked = value === display
-
+  const labelText = `Bitmoji ${label}`
   return (
     <div className='margin'>
-      <label>{`Bitmoji ${label}`}</label>
+      <label htmlFor={labelText}>
+        {labelText}
+      </label>
       <input
         type='radio'
         name='display'
@@ -14,6 +16,7 @@ const RadioButton = ({display, changeDisplay, value}) => {
         onChange={changeDisplay}
         checked={checked}
         className='margin'
+        aria-label={labelText}
       />
     </div>
   )
