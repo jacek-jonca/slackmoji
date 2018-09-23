@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   render() {
-    const {loading} = this.state
+    const {loading, solo, friends} = this.state
     const className = loading ? 'load-screen' : 'container'
 
     return (
@@ -36,8 +36,10 @@ class App extends Component {
             What fun new Bitmojis can I use in Slack?
           </h3>
         </div>
-        { loading && <Loader /> }
-        <SlackmojiContainer {...this.state} />
+        { loading
+          ? <Loader />
+          : <SlackmojiContainer solo={solo} friends={friends} />
+        }
       </div>
     )
   }

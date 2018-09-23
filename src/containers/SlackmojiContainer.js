@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import DisplayControls from '../components/DisplayControls'
-import BitmojiResults from './BitmojiResults'
-import {lazyLoad} from '../helpers/bitmoji'
+import React, { Component, Fragment } from 'react'
+import DisplayControls from '../containers/DisplayControls'
+import BitmojiList from './BitmojiList'
+import NoResults from '../components/NoResults'
 
 export default class SlackmojiContainer extends Component {
   state = {
@@ -33,22 +33,19 @@ export default class SlackmojiContainer extends Component {
 
   render() {
     const bitmojis = this.filterBitmojis()
-    const noResults = !this.props.loading && !bitmojis.length
 
     return (
-      [
+      <Fragment>
         <DisplayControls
-          loading={this.props.loading}
           display={this.state.display}
           changeDisplay={this.changeDisplay}
           key='display-controls'
-        />,
-        <BitmojiResults
-          noResults={noResults}
-          bitmojis={bitmojis}
-          key='results'
         />
-      ]
+        { !bitmojis.length 
+          ? <NoResults key='no-results' /> 
+          : <BitmojiList bitmojis={bitmojis} key='bitmoji-list' /> 
+        }
+      </ Fragment>
     )
   }
 }

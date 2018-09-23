@@ -1,12 +1,14 @@
 import React from 'react'
 
-const radioButton = (value, {display, changeDisplay}) => {
+const RadioButton = ({display, changeDisplay, value}) => {
   const label = value.replace(/^\w/, c => c.toUpperCase())
   const checked = value === display
-
+  const labelText = `Bitmoji ${label}`
   return (
     <div className='margin'>
-      <label>{`Bitmoji ${label}`}</label>
+      <label htmlFor={labelText}>
+        {labelText}
+      </label>
       <input
         type='radio'
         name='display'
@@ -14,6 +16,7 @@ const radioButton = (value, {display, changeDisplay}) => {
         onChange={changeDisplay}
         checked={checked}
         className='margin'
+        aria-label={labelText}
       />
     </div>
   )
@@ -22,8 +25,8 @@ const radioButton = (value, {display, changeDisplay}) => {
 export default (props) => {
   return (
     <div className='radio flex center-self center-cross'>
-      {radioButton('solo', props)}
-      {radioButton('friends', props)}
+      <RadioButton value={'solo'} {...props} />
+      <RadioButton value={'friends'} {...props} />
     </div>
   )
 }
