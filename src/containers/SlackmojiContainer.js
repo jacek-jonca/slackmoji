@@ -8,9 +8,19 @@ export default class SlackmojiContainer extends Component {
     display: 'solo',
     search: ''
   }
-  
-  componentDidUpdate(prevProps) {
-    lazyLoad()
+
+  componentDidMount() {
+    this.lazyLoad()
+  }
+
+  componentDidUpdate() {
+    this.lazyLoad()
+  }
+
+  lazyLoad = () => {
+    setTimeout(() => {
+      document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'))
+    }, 2000)
   }
 
   changeDisplay = ({target: {name, value}}) => {
@@ -33,7 +43,6 @@ export default class SlackmojiContainer extends Component {
 
   render() {
     const bitmojis = this.filterBitmojis()
-
     return (
       <Fragment>
         <DisplayControls
@@ -41,11 +50,11 @@ export default class SlackmojiContainer extends Component {
           changeDisplay={this.changeDisplay}
           key='display-controls'
         />
-        { !bitmojis.length 
-          ? <NoResults key='no-results' /> 
-          : <BitmojiList bitmojis={bitmojis} key='bitmoji-list' /> 
+        { !!bitmojis.length 
+          ? <BitmojiList bitmojis={bitmojis} /> 
+          : <NoResults /> 
         }
-      </ Fragment>
+      </Fragment>
     )
   }
 }

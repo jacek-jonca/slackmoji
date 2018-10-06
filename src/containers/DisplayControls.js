@@ -13,14 +13,12 @@ export default ({
       <DisplayRadio
         display={display}
         changeDisplay={changeDisplay}
-        key='radio'
       />
       <SearchField
         changeDisplay={debounce(
           changeDisplay,
           500)
         }
-        key='search'
       />
     </Fragment>
   )
