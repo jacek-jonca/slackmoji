@@ -14,12 +14,8 @@ export default ({bitmoji: {src, tags}, hidden}) => {
   const {tags1, tags2} = splitTags(tags)
 
   return (
-    <li className={'bitmoji-card flex-container column' + `${hidden ? ' hidden' : ''}`}>
-      <img
-        src={imageSrc(src)}
-        alt={`bitmoji ${tags[0]}`}
-        className='border-b'
-      />
+    <li className='bitmoji-card flex-container column'>
+      <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`} />
       <div className='flex margin'>
         <TagColumn tags={tags1} />
         <TagColumn tags={tags2} />

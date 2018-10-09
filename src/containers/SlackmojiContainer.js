@@ -9,20 +9,6 @@ export default class SlackmojiContainer extends Component {
     search: ''
   }
 
-  componentDidMount() {
-    this.lazyLoad()
-  }
-
-  componentDidUpdate() {
-    this.lazyLoad()
-  }
-
-  lazyLoad = () => {
-    setTimeout(() => {
-      document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'))
-    }, 2000)
-  }
-
   changeDisplay = ({target: {name, value}}) => {
     this.setState({[name]: value})
   }
