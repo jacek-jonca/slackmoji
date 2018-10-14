@@ -5,7 +5,7 @@ const RadioButton = ({display, changeDisplay, value}) => {
   const checked = value === display
   const labelText = `Bitmoji ${label}`
   return (
-    <div className='margin'>
+    <div className='margin-m'>
       <label htmlFor={labelText}>
         {labelText}
       </label>
@@ -15,7 +15,7 @@ const RadioButton = ({display, changeDisplay, value}) => {
         value={value}
         onChange={changeDisplay}
         checked={checked}
-        className='margin'
+        className='margin-m'
         aria-label={labelText}
       />
     </div>

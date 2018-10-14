@@ -12,7 +12,7 @@ export default class SearchField extends Component {
 
   render() {
     return(
-      <input className='search margin'
+      <input className='search margin-m'
         type='text'
         name='search'
         onChange={this.handleChange}

@@ -1,25 +1,32 @@
-import React from 'react'
-import {splitTags, imageSrc} from '../helpers/bitmoji'
+import React, {Component} from 'react'
+import {filterTags, imageSrc} from '../helpers/bitmoji'
 
-const TagColumn = ({tags}) => {
-  return (
-    <ul className='flex column align-start flex-1 padding-rs'>
-      { tags.map(tag => <li key={tag}>'{tag}'</li>) }
-    </ul>
-  )
-}
+export default class BitmojiCard extends Component {
+  state = {count: 3}
 
+  toggleTags = () => {
+    this.setState(prevState => {
+      const {count} = prevState
+      const {bitmoji: {tags}} = this.props
+      const newCount = (count === 3) ? tags.length : 3
+      return {count: newCount}
+    })
+  }
 
-export default ({bitmoji: {src, tags}, hidden}) => {
-  const {tags1, tags2} = splitTags(tags)
+  render() {
+    const {bitmoji: {src, tags}} = this.props
+    const displayTags = filterTags(tags).slice(0, this.state.count)
 
-  return (
-    <li className='bitmoji-card flex-container column'>
-      <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`} />
-      <div className='flex margin'>
-        <TagColumn tags={tags1} />
-        <TagColumn tags={tags2} />
-      </div>
-    </li>
-  )
+    return (
+      <li className='bitmoji-card flex-container column' onClick={this.toggleTags}>
+        <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`} />
+        <ul className='flex column margin-m'>
+          {displayTags.map(tag => <li key={tag}>'{tag}'</li>)}
+          {this.state.count === 3 &&
+            <li className='center-self-cross font-bold'>. . .</li>
+          }
+        </ul>
+      </li>
+    )
+  }
 }
