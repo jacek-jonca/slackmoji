@@ -3,15 +3,17 @@ import BitmojiCard from '../components/BitmojiCard'
 
 export default class BitmojiList extends React.Component {
   state = {count: 100}
-
+  scrollY = 0
 
   componentDidMount() {
-    const {scrollTop, clientHeight, scrollHeight} = this.refs.list
     document.addEventListener('scroll', this.loadMoreItems)
   }
 
   loadMoreItems = () => {
-    if (this.state.count < this.props.bitmojis.length) {
+    const moreBitmojis = this.state.count < this.props.bitmojis.length
+    const scrollDown = window.pageYOffset || document.documentElement.scrollTop
+
+    if (moreBitmojis && (this.scrollY < scrollDown)) {
       this.setState(prevState => ({count: prevState.count + 100}))
     } else {
       document.removeEventListener('scroll', this.loadMoreItems)
@@ -24,7 +26,6 @@ export default class BitmojiList extends React.Component {
   }
 
   render() {
-    const {bitmojis} = this.props
     return (
       <ul
       className='bitmoji-list flex wrap center'
