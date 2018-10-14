@@ -9,12 +9,20 @@ export default class BitmojiList extends Component {
     document.addEventListener('scroll', this.loadMoreItems)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.bitmojis.length === this.props.bitmojis.length) return
+
+    if (prevState.count > 100) {
+      this.setState({count: 100})
+    }
+  }
+
   loadMoreItems = () => {
     const moreBitmojis = this.state.count < this.props.bitmojis.length
     const scrollDown = window.pageYOffset || document.documentElement.scrollTop
 
     if (moreBitmojis && (this.scrollY < scrollDown)) {
-      this.setState(prevState => ({count: prevState.count + 100}))
+      this.setState(prevState => ({count: prevState.count + 50}))
     }
   }
 
