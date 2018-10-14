@@ -15,8 +15,6 @@ export default class BitmojiList extends Component {
 
     if (moreBitmojis && (this.scrollY < scrollDown)) {
       this.setState(prevState => ({count: prevState.count + 100}))
-    } else {
-      document.removeEventListener('scroll', this.loadMoreItems)
     }
   }
 
