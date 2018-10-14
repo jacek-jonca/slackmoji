@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {Component} from 'react'
 import BitmojiCard from '../components/BitmojiCard'
 
-export default class BitmojiList extends React.Component {
+export default class BitmojiList extends Component {
   state = {count: 100}
   scrollY = 0
 
