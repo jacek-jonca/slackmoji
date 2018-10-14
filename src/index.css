@@ -44,22 +44,12 @@ ul {
 }
 
 .load-image {
-  animation: rotate-image infinite 15s linear;
+  animation: rotate-image infinite 10s linear;
 }
 
 @keyframes rotate-image {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(15deg);
-  }
-  50% {
-    transform: rotate(0deg);
-  }
-  75% {
-    transform: rotate(-15deg);
-  }
+  from {transform: rotate(10deg);}  
+  to {transform: rotate(-10deg);}
 }
 
 .font-bold {
