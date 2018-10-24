@@ -9,6 +9,10 @@ export default class BitmojiList extends Component {
     document.addEventListener('scroll', this.loadMoreItems)
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.loadMoreItems)
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.bitmojis.length === this.props.bitmojis.length) return
 
