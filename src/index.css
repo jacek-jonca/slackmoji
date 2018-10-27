@@ -33,6 +33,10 @@ ul {
   background-color: #FFF564;
 }
 
+.bitmoji-card > img {
+  height: 200px;
+}
+
 .bitmoji-preview {
   opacity: 1;
   transition: opacity 0.3s;
