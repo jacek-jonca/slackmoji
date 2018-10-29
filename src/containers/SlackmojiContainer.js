@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import DisplayControls from '../containers/DisplayControls'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
+import debounce from '../helpers/debounce'
 
 export default class SlackmojiContainer extends Component {
   state = {
@@ -9,8 +10,13 @@ export default class SlackmojiContainer extends Component {
     search: ''
   }
 
-  changeDisplay = ({target: {name, value}}) => {
-    this.setState({[name]: value})
+  changeDisplay = (e) => {
+    const display = e.target.value
+    this.setState({display})
+  }
+
+  changeSearch = (search) => {
+    this.setState({search})
   }
 
   filterBitmojis() {
@@ -29,15 +35,20 @@ export default class SlackmojiContainer extends Component {
 
   render() {
     const bitmojis = this.filterBitmojis()
+
     return (
       <Fragment>
         <DisplayControls
           display={this.state.display}
           changeDisplay={this.changeDisplay}
-          key='display-controls'
+          changeSearch={debounce(this.changeSearch, 500)}
+          search={this.state.search}
         />
         { !!bitmojis.length 
-          ? <BitmojiList bitmojis={bitmojis} /> 
+          ? <BitmojiList
+              bitmojis={bitmojis}
+              changeSearch={this.changeSearch}
+            />
           : <NoResults /> 
         }
       </Fragment>

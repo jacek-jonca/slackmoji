@@ -37,6 +37,10 @@ ul {
   height: 200px;
 }
 
+.bitmoji-card li {
+  cursor: pointer;
+}
+
 .bitmoji-preview {
   opacity: 1;
   transition: opacity 0.3s;
@@ -54,10 +58,6 @@ ul {
 @keyframes rotate-image {
   from {transform: rotate(10deg);}  
   to {transform: rotate(-10deg);}
-}
-
-.font-bold {
-  font-weight: bold;
 }
 
 .center-text {

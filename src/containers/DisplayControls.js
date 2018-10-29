@@ -1,11 +1,12 @@
 import React, {Fragment} from 'react'
 import DisplayRadio from '../components/DisplayRadio'
 import SearchField from '../components/SearchField'
-import debounce from '../helpers/debounce'
 
 export default ({
   display,
-  changeDisplay
+  changeDisplay,
+  changeSearch,
+  search
 }) => {
 
   return (
@@ -15,10 +16,8 @@ export default ({
         changeDisplay={changeDisplay}
       />
       <SearchField
-        changeDisplay={debounce(
-          changeDisplay,
-          500)
-        }
+        changeSearch={changeSearch}
+        search={search}
       />
     </Fragment>
   )

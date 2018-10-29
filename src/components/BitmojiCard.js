@@ -13,18 +13,33 @@ export default class BitmojiCard extends Component {
     })
   }
 
+  handleClick = (e) => {
+    const search = e.target.innerText.replace(/"/g, '')
+    this.props.changeSearch(search)
+  }
+
   render() {
     const {bitmoji: {src, tags}} = this.props
     const filteredTags = filterTags(tags)
     const displayTags = filteredTags.slice(0, this.state.count)
+    const moreTags = displayTags.length < filteredTags.length
 
     return (
-      <li className='bitmoji-card flex-container column' onClick={this.toggleTags}>
+      <li className='bitmoji-card flex-container column' >
         <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`} />
         <ul className='flex column margin-m'>
-          {displayTags.map(tag => <li key={tag}>"{tag}"</li>)}
-          {displayTags.length < filteredTags.length &&
-            <li className='center-self-cross font-bold'>. . .</li>
+          {displayTags.map(tag => (
+            <li key={tag} onClick={this.handleClick}>
+              "{tag}"
+            </li>)
+          )}
+          { moreTags
+            ? <li className='center-self-cross' onClick={this.toggleTags}>
+              &#x25BC;
+            </li>
+            : <li className='center-self-cross' onClick={this.toggleTags}>
+              &#x25B2;
+            </li>
           }
         </ul>
       </li>

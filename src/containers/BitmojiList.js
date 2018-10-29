@@ -30,19 +30,21 @@ export default class BitmojiList extends Component {
     }
   }
 
-  displayBitmojis() {
-    const bitmojis = this.props.bitmojis.slice(0, this.state.count)
-    return bitmojis.map(b => <BitmojiCard bitmoji={b} key={b.comic_id} />)
-  }
-
   render() {
+    const bitmojis = this.props.bitmojis.slice(0, this.state.count)
     return (
       <ul
       className='bitmoji-list flex wrap center'
       key='bitmoji-list'
       ref='list'
       >
-      { this.displayBitmojis() }
+      { bitmojis.map(b => (
+        <BitmojiCard
+          bitmoji={b}
+          changeSearch={this.props.changeSearch}
+          key={b.comic_id}
+        />)
+      )}
       </ul>
     )
   }
