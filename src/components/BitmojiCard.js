@@ -19,8 +19,8 @@ export default class BitmojiCard extends Component {
   }
 
   render() {
-    const {bitmoji: {src, tags}} = this.props
-    const filteredTags = filterTags(tags)
+    const {search, bitmoji: {src, tags}} = this.props
+    const filteredTags = filterTags(tags, search)
     const displayTags = filteredTags.slice(0, this.state.count)
     const moreTags = displayTags.length < filteredTags.length
 
@@ -30,7 +30,7 @@ export default class BitmojiCard extends Component {
         <ul className='flex column margin-m'>
           {displayTags.map(tag => (
             <li key={tag} onClick={this.handleClick}>
-              "{tag}"
+              {tag}
             </li>)
           )}
           { moreTags

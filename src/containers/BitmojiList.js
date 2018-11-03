@@ -42,6 +42,7 @@ export default class BitmojiList extends Component {
         <BitmojiCard
           bitmoji={b}
           changeSearch={this.props.changeSearch}
+          search={this.props.search}
           key={b.comic_id}
         />)
       )}
