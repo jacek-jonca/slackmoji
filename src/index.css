@@ -41,6 +41,10 @@ ul {
   cursor: pointer;
 }
 
+.bitmoji-card li:hover {
+  font-weight: bold;
+}
+
 .bitmoji-preview {
   opacity: 1;
   transition: opacity 0.3s;
