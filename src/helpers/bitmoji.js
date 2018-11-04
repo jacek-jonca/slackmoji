@@ -10,11 +10,6 @@ const tagMatches = (tag, search) => {
   return tag.toLowerCase().includes(search.toLowerCase()) 
 }
 
-const filterTags = (tags, search) => {
-  const filteredTags = tags.map(tag => tag.replace(/\*/, ''))
-  return sortBySearch(filteredTags, search)
-}
-
 const sortBySearch = (tags, search) => {
   if (!search) return tags
 
@@ -35,4 +30,4 @@ const imageSrc = (src) => {
 }
 
 
-export {filterTags, imageSrc, filterBitmojis}
+export {sortBySearch, imageSrc, filterBitmojis}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {filterTags, imageSrc} from '../helpers/bitmoji'
+import {sortBySearch, imageSrc} from '../helpers/bitmoji'
 
 export default class BitmojiCard extends Component {
   state = {count: 2}
@@ -20,9 +20,9 @@ export default class BitmojiCard extends Component {
 
   render() {
     const {search, bitmoji: {src, tags}} = this.props
-    const filteredTags = filterTags(tags, search)
-    const displayTags = filteredTags.slice(0, this.state.count)
-    const moreTags = displayTags.length < filteredTags.length
+    const sortedTags = sortBySearch(tags, search)
+    const displayTags = sortedTags.slice(0, this.state.count)
+    const moreTags = displayTags.length < sortedTags.length
 
     return (
       <li className='bitmoji-card flex-container column' >
