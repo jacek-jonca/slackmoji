@@ -1,13 +1,23 @@
 import React, {Component} from 'react'
 
 export default class SearchField extends Component {
-  state = {search: ''}
+  constructor(props) {
+    super(props)
+    this.state = {search: props.search}
+  }
 
-  handleChange = (e) => {
-    e.persist()
-    const search = e.target.value
-    this.setState({search})
-    this.props.changeDisplay(e)
+  handleSearch = ({target: {value}}) => {
+    this.setState({search: value})
+    this.props.changeSearch(value)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const newSearchProp = this.props.search !== prevProps.search
+    const sameSearchState = this.state.search === prevState.search
+
+    if (newSearchProp && sameSearchState) {
+      this.setState({search: this.props.search})
+    }
   }
 
   render() {
@@ -15,7 +25,8 @@ export default class SearchField extends Component {
       <input className='search margin-m'
         type='text'
         name='search'
-        onChange={this.handleChange}
+        value={this.state.search}
+        onChange={this.handleSearch}
         placeholder='Search for keywords'
       />
     )

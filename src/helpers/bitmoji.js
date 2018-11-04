@@ -1,12 +1,32 @@
-const filterTags = (tags) => {
-  const filteredTags = tags.map(tag => tag.replace(/\*/, ''))
-  sortByLength(filteredTags)
-  return [...new Set(filteredTags)]
+const filterBitmojis = (bitmojis, search) => {
+  return bitmojis.filter(bitmoji => bitmojiMatches(bitmoji, search))
 }
 
-const sortByLength = (tags) => {
-  tags.sort()
-  return tags.reverse()
+const bitmojiMatches = (bitmoji, search) => {
+  return bitmoji.tags.some(tag => tagMatches(tag, search))
+}
+
+const tagMatches = (tag, search) => {
+  return tag.toLowerCase().includes(search.toLowerCase()) 
+}
+
+const filterTags = (tags, search) => {
+  const filteredTags = tags.map(tag => tag.replace(/\*/, ''))
+  return sortBySearch(filteredTags, search)
+}
+
+const sortBySearch = (tags, search) => {
+  if (!search) return tags
+
+  const tagsArr = []
+  tags.forEach(tag => {
+    if (tagMatches(tag, search)) {
+      tagsArr.unshift(tag)
+    } else {
+      tagsArr.push(tag)
+    }
+  })
+  return tagsArr
 }
 
 const imageSrc = (src) => {
@@ -15,4 +35,4 @@ const imageSrc = (src) => {
 }
 
 
-export {filterTags, imageSrc}
+export {filterTags, imageSrc, filterBitmojis}
