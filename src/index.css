@@ -45,6 +45,10 @@ ul {
   font-weight: bold;
 }
 
+.tags {
+  height: calc(100% - 220px);
+}
+
 .bitmoji-preview {
   opacity: 1;
   transition: opacity 0.3s;
@@ -73,6 +77,10 @@ ul {
 
 .margin-m {
   margin: 10px;
+}
+
+.margin-ta {
+  margin-top: auto;
 }
 
 
