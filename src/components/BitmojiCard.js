@@ -26,18 +26,18 @@ export default class BitmojiCard extends Component {
 
     return (
       <li className='bitmoji-card flex-container column' >
-        <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`} />
-        <ul className='flex column margin-m'>
+        <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`}/>
+        <ul className='tags flex column margin-m'>
           {displayTags.map(tag => (
             <li key={tag} onClick={this.handleClick}>
               {tag}
             </li>)
           )}
           { moreTags
-            ? <li className='center-self-cross' onClick={this.toggleTags}>
+            ? <li className='center-self-cross margin-ta' onClick={this.toggleTags}>
               &#x25BC;
             </li>
-            : <li className='center-self-cross' onClick={this.toggleTags}>
+            : <li className='center-self-cross margin-ta' onClick={this.toggleTags}>
               &#x25B2;
             </li>
           }
