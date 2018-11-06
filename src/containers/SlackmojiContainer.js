@@ -28,7 +28,6 @@ export default class SlackmojiContainer extends Component {
     } else {
       bitmojiId = process.env.REACT_APP_BITMOJI_ID
     }
-    console.log(bitmojiId);
     this.setState({bitmojiId})
   }
 
