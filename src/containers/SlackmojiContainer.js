@@ -12,6 +12,13 @@ export default class SlackmojiContainer extends Component {
     bitmojiId: process.env.REACT_APP_BITMOJI_ID
   }
 
+  componentDidMount() {
+    const bitmojiId = localStorage.getItem('bitmojiId')
+    if (bitmojiId) {
+      this.setState({bitmojiId})
+    }
+  }
+
   changeDisplay = (e) => {
     const display = e.target.value
     this.setState({display})
@@ -25,6 +32,7 @@ export default class SlackmojiContainer extends Component {
     let bitmojiId
     if (url) {
       bitmojiId = getBitmojiId(url)
+      localStorage.setItem('bitmojiId', bitmojiId)
     } else {
       bitmojiId = process.env.REACT_APP_BITMOJI_ID
     }
