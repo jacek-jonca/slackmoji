@@ -21,14 +21,14 @@ export default class SlackmojiContainer extends Component {
     this.setState({search})
   }
   
-  changeBitmojiId = (e) => {
-    e.preventDefault()
+  changeBitmojiId = (url) => {
     let bitmojiId
-    if (e.target.value) {
-      bitmojiId = getBitmojiId(e.target.value)
+    if (url) {
+      bitmojiId = getBitmojiId(url)
     } else {
       bitmojiId = process.env.REACT_APP_BITMOJI_ID
     }
+    console.log(bitmojiId);
     this.setState({bitmojiId})
   }
 

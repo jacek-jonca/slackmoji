@@ -23,7 +23,7 @@ export default class BitmojiCard extends Component {
     const sortedTags = sortBySearch(tags, search)
     const displayTags = sortedTags.slice(0, this.state.count)
     const moreTags = displayTags.length < sortedTags.length
-
+    console.log(bitmojiId);
     return (
       <li className='bitmoji-card flex-container column' >
         <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>

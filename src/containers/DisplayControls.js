@@ -3,25 +3,6 @@ import DisplayRadio from '../components/DisplayRadio'
 import SearchField from '../components/SearchField'
 import BitmojiURLField from '../components/BitmojiURLField'
 
-// export default () => {
-// 
-//   return (
-//     <Fragment>
-//       <DisplayRadio
-//         display={display}
-//         changeDisplay={changeDisplay}
-//       />
-//       <SearchField
-//         changeSearch={changeSearch}
-//         search={search}
-//       />
-//       <BitmojiSelector
-// 
-//       />
-//     </Fragment>
-//   )
-// }
-
 export default class DisplayControls extends Component {
   state = {
     showURLField: false,
@@ -52,7 +33,7 @@ export default class DisplayControls extends Component {
           changeSearch={changeSearch}
           search={search}
         />
-        <div className='bitmoji-selector margin-m'>
+        <div className='bitmoji-selector center-self margin-m'>
           <button className='btn' onClick={this.toggleURLField}>
             { this.state.showURLField
               ? 'Hide URL Field'

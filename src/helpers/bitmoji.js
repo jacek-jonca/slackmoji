@@ -32,7 +32,8 @@ const imageSrc = (src, bitmojiId) => {
 const getBitmojiId = (url) => {
   const params = getParams(url)
   const codeArr = params.split(/-/)
-  return codeArr.slice(5, 10).join('-')
+  const length = codeArr.length
+  return codeArr.slice(length - 6, length - 1).join('-')
 }
 
 const getParams = (url) => {

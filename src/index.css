@@ -77,13 +77,9 @@ ul {
   border-radius: 10px;
   text-align: center;
   font-size: 1em;
+  font-family: 'Fredoka One', cursive;
   padding: 10px;
 }
-
-.btn-blue {
-  border: 1px solid #19aabe;
-}
-
 .btn:hover {
   background: #FFC76B;
 }
@@ -109,9 +105,10 @@ ul {
   grid-template-areas:
     "header header header"
     "radio search selector"
+    ". url ."
     "results results results";
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 2fr 1fr auto;
+  grid-template-rows: 2fr 1fr 1fr auto;
 }
 
 .load-screen {
@@ -144,6 +141,10 @@ ul {
   grid-area: search;
 }
 
+.url-form {
+  grid-area: url;
+}
+
 .bitmoji-selector {
   grid-area: selector;
 }
@@ -154,6 +155,7 @@ ul {
 
 
 /* flexbox */
+
 .flex {
   display: flex;
 }
@@ -180,4 +182,12 @@ ul {
 
 .center-self-cross {
   align-self: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.grow-1 {
+  flex-grow: 1;
 }
