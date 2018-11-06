@@ -3,12 +3,13 @@ import DisplayControls from '../containers/DisplayControls'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
 import debounce from '../helpers/debounce'
-import {filterBitmojis} from '../helpers/bitmoji'
+import {filterBitmojis, getBitmojiId} from '../helpers/bitmoji'
 
 export default class SlackmojiContainer extends Component {
   state = {
     display: 'solo',
-    search: ''
+    search: '',
+    bitmojiId: process.env.REACT_APP_BITMOJI_ID
   }
 
   changeDisplay = (e) => {
@@ -18,6 +19,16 @@ export default class SlackmojiContainer extends Component {
 
   changeSearch = (search) => {
     this.setState({search})
+  }
+  
+  changeBitmojiId = (url) => {
+    let bitmojiId
+    if (url) {
+      bitmojiId = getBitmojiId(url)
+    } else {
+      bitmojiId = process.env.REACT_APP_BITMOJI_ID
+    }
+    this.setState({bitmojiId})
   }
 
   filterBitmojis() {
@@ -37,11 +48,13 @@ export default class SlackmojiContainer extends Component {
           display={this.state.display}
           changeDisplay={this.changeDisplay}
           changeSearch={debounce(this.changeSearch, 500)}
+          changeBitmojiId={this.changeBitmojiId}
           search={this.state.search}
         />
         { !!bitmojis.length 
           ? <BitmojiList
               bitmojis={bitmojis}
+              bitmojiId={this.state.bitmojiId}
               changeSearch={this.changeSearch}
               search={this.state.search}
             />

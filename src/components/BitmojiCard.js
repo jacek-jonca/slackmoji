@@ -19,14 +19,14 @@ export default class BitmojiCard extends Component {
   }
 
   render() {
-    const {search, bitmoji: {src, tags}} = this.props
+    const {search, bitmojiId, bitmoji: {src, tags}} = this.props
     const sortedTags = sortBySearch(tags, search)
     const displayTags = sortedTags.slice(0, this.state.count)
     const moreTags = displayTags.length < sortedTags.length
 
     return (
       <li className='bitmoji-card flex-container column' >
-        <img src={imageSrc(src)} alt={`bitmoji ${tags[0]}`}/>
+        <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>
         <ul className='tags flex column margin-m'>
           {displayTags.map(tag => (
             <li key={tag} onClick={this.handleClick}>
