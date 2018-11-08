@@ -14,21 +14,29 @@ export default class BitmojiURLField extends Component {
     this.setState({url: ''})
   }
 
+  buttonText = () => {
+    if (!this.state.url && !this.props.defaultBitmoji) {
+      return 'Reset'
+    }
+    return 'Submit'
+  }
+
   render() {
+    const btnText = this.buttonText()
     return (
       <Fragment>
         <form
-        onSubmit={this.handleSubmit}
-        className='url-form flex space-between'
+          onSubmit={this.handleSubmit}
+          className='url-form flex space-between'
         >
           <input
-          className='margin-m grow-1'
-          type='text'
-          value={this.state.url}
-          onChange={this.handleChange}
-          placeholder='Enter URL of any image starring your Bitmoji'
+            className='margin-m grow-1'
+            type='text'
+            value={this.state.url}
+            onChange={this.handleChange}
+            placeholder='Enter URL of any image starring your Bitmoji'
           />
-          <input className='btn center-self-cross' type='submit'/>
+          <input className='btn center-self-cross' type='submit' value={btnText}/>
         </form>
       </Fragment>
     )

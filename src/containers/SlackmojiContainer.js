@@ -35,6 +35,7 @@ export default class SlackmojiContainer extends Component {
       localStorage.setItem('bitmojiId', bitmojiId)
     } else {
       bitmojiId = process.env.REACT_APP_BITMOJI_ID
+      localStorage.removeItem('bitmojiId')
     }
     this.setState({bitmojiId})
   }
@@ -49,6 +50,7 @@ export default class SlackmojiContainer extends Component {
 
   render() {
     const bitmojis = this.filterBitmojis()
+    const defaultBitmoji = process.env.REACT_APP_BITMOJI_ID === this.state.bitmojiId
 
     return (
       <Fragment>
@@ -58,6 +60,7 @@ export default class SlackmojiContainer extends Component {
           changeSearch={debounce(this.changeSearch, 500)}
           changeBitmojiId={this.changeBitmojiId}
           search={this.state.search}
+          defaultBitmoji={defaultBitmoji}
         />
         { !!bitmojis.length 
           ? <BitmojiList

@@ -20,7 +20,8 @@ export default class DisplayControls extends Component {
       changeDisplay,
       changeSearch,
       changeBitmojiId,
-      search
+      search,
+      defaultBitmoji
     } = this.props
 
     return (
@@ -46,6 +47,7 @@ export default class DisplayControls extends Component {
           <BitmojiURLField
             toggleURLField={this.toggleURLField}
             changeBitmojiId={changeBitmojiId}
+            defaultBitmoji={defaultBitmoji}
           />
         }
       </Fragment>
