@@ -42,10 +42,10 @@ export default class BitmojiCard extends Component {
               <span onClick={this.handleSearch}>
                 {tag}
               </span>
-              <span onClick={this.handleCopy} className='tooltip'>
-                <img className='icon' src='./copy-icon.png' data-tag={tag} />
-                <span className='tooltip-text tooltip-s'>
-                Copy to Clipboard
+              <span onClick={this.handleCopy} data-tag={tag} className='tooltip'>
+                <img className='icon' src='./copy-icon.png' />
+                <span data-tag={tag} className='tooltip-text tooltip-s'>
+                  Copy to Clipboard
                 </span>
               </span>
             </li>)
