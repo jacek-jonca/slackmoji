@@ -13,9 +13,18 @@ export default class BitmojiCard extends Component {
     })
   }
 
-  handleClick = (e) => {
-    const search = e.target.innerText.replace(/"/g, '')
+  handleSearch = ({target}) => {
+    const search = target.innerText.replace(/"/g, '')
     this.props.changeSearch(search)
+  }
+
+  handleCopy = ({target: {dataset: {tag}}}) => {
+    navigator.permissions.query({name: "clipboard-write"})
+    .then(result => {
+      if (result.state == "granted" || result.state == "prompt") {
+        navigator.clipboard.writeText(`/bitmoji ${tag}`)
+      }
+    })
   }
 
   render() {
@@ -29,8 +38,16 @@ export default class BitmojiCard extends Component {
         <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>
         <ul className='tags flex column margin-m'>
           {displayTags.map(tag => (
-            <li key={tag} onClick={this.handleClick}>
-              {tag}
+            <li className='flex space-between' key={tag}>
+              <span onClick={this.handleSearch}>
+                {tag}
+              </span>
+              <span onClick={this.handleCopy} className='tooltip'>
+                <img className='icon' src='./copy-icon.png' data-tag={tag} />
+                <span className='tooltip-text'>
+                Copy to Clipboard
+                </span>
+              </span>
             </li>)
           )}
           { moreTags
