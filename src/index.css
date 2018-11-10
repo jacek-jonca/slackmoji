@@ -87,6 +87,7 @@ ul {
 
 .tooltip .tooltip-text {
   visibility: hidden;
+  pointer-events: none;
   background-color: #5E48B5;
   color: #fff;
   text-align: center;
