@@ -41,7 +41,7 @@ ul {
   cursor: pointer;
 }
 
-.bitmoji-card li:hover {
+.bitmoji-card li span:hover {
   font-weight: bold;
 }
 
@@ -72,6 +72,32 @@ ul {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+.icon {
+  height: 1em;
+}
+
+/* tooltips */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: grey;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
 }
 
 
