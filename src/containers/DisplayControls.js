@@ -11,6 +11,10 @@ export default class DisplayControls extends Component {
   toggleURLField = () => {
     this.setState(prevState => {
       return {showURLField: !prevState.showURLField}
+    }, () => {
+      const {showURLField} = this.state
+      const gridClass = showURLField ? 'container-with-url' : 'container'
+      this.props.changeGrid(gridClass)
     })
   }
   
