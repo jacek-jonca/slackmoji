@@ -8,7 +8,8 @@ class App extends Component {
   state = {
     loading: true,
     solo: [],
-    friends: []
+    friends: [],
+    gridClass: 'load-screen'
   }
 
   componentDidMount() {
@@ -17,17 +18,21 @@ class App extends Component {
         this.setState({
           solo: resp.solo,
           friends: resp.friends,
-          loading: false
+          loading: false,
+          gridClass: 'container'
         })
       })
   }
 
+  changeGrid = (gridClass) => {
+    this.setState({gridClass})
+  }
+
   render() {
     const {loading, solo, friends} = this.state
-    const className = loading ? 'load-screen' : 'container'
 
     return (
-      <div className={className}>
+      <div className={this.state.gridClass}>
         <div className='header center-text'>
           <h1>
             SlackMoji
@@ -38,7 +43,11 @@ class App extends Component {
         </div>
         { loading
           ? <Loader />
-          : <SlackmojiContainer solo={solo} friends={friends} />
+          : <SlackmojiContainer
+              solo={solo}
+              friends={friends}
+              changeGrid={this.changeGrid}
+            />
         }
       </div>
     )

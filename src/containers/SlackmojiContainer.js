@@ -58,6 +58,7 @@ export default class SlackmojiContainer extends Component {
           display={this.state.display}
           changeDisplay={this.changeDisplay}
           changeSearch={debounce(this.changeSearch, 500)}
+          changeGrid={this.props.changeGrid}
           changeBitmojiId={this.changeBitmojiId}
           search={this.state.search}
           defaultBitmoji={defaultBitmoji}
