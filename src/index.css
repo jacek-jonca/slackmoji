@@ -137,6 +137,16 @@ ul {
   grid-template-areas:
     "header header header"
     "radio search selector"
+    "results results results";
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr auto;
+}
+
+.container-with-url {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "radio search selector"
     ". url ."
     "results results results";
   grid-template-columns: 1fr 1fr 1fr;
