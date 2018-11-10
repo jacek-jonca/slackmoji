@@ -1,10 +1,15 @@
 import React, {Component, Fragment} from 'react'
+import {validateURL} from '../helpers/bitmojiURLs'
 
 export default class BitmojiURLField extends Component {
   state = {url: ''}
 
   handleChange = ({target: {value}}) => {
-    this.setState({url: value})
+    if (validateURL(value)) {
+      this.setState({url: value})
+    } else {
+      alert('Please enter a valid Bitmoji URL')
+    }
   }
 
   handleSubmit = (e) => {

@@ -24,23 +24,4 @@ const sortBySearch = (tags, search) => {
   return tagsArr
 }
 
-const imageSrc = (src, bitmojiId) => {
-  const url = src.replace(/%s/g, bitmojiId)
-  return url + '&width=200'
-}
-
-const getBitmojiId = (url) => {
-  const params = getParams(url)
-  const codeArr = params.split(/-/)
-  const length = codeArr.length
-  return codeArr.slice(length - 6, length - 1).join('-')
-}
-
-const getParams = (url) => {
-  const splitURL = url.split(/\//)
-  const path = splitURL[splitURL.length - 1]
-  return path.split(/\./)[0]
-}
-
-
-export {sortBySearch, imageSrc, filterBitmojis, getBitmojiId}
+export {sortBySearch, filterBitmojis}
