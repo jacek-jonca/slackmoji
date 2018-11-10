@@ -3,7 +3,8 @@ import DisplayControls from '../containers/DisplayControls'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
 import debounce from '../helpers/debounce'
-import {filterBitmojis, getBitmojiId} from '../helpers/bitmoji'
+import {filterBitmojis} from '../helpers/bitmojiFilters'
+import {getBitmojiId} from '../helpers/bitmojiURLs'
 
 export default class SlackmojiContainer extends Component {
   state = {

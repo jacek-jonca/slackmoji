@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {sortBySearch, imageSrc} from '../helpers/bitmoji'
+import {sortBySearch} from '../helpers/bitmojiFilters'
+import {imageSrc} from '../helpers/bitmojiURLs'
 
 export default class BitmojiCard extends Component {
   state = {count: 2}
