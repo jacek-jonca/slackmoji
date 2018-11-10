@@ -79,25 +79,50 @@ ul {
 }
 
 /* tooltips */
+
 .tooltip {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .tooltip .tooltip-text {
-    visibility: hidden;
-    width: 120px;
-    background-color: grey;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
+  visibility: hidden;
+  background-color: #5E48B5;
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  left: 105%;
 }
 
 .tooltip:hover .tooltip-text {
-    visibility: visible;
+  visibility: visible;
+}
+
+
+.tooltip .tooltip-text::after {
+  content: " ";
+  position: absolute;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent #5E48B5 transparent transparent;
+}
+
+.tooltip .tooltip-s {
+  margin-left: 10px;
+  margin-top: -10px;
+}
+
+.tooltip .tooltip-s::after {
+  top: 20%;
+}
+
+.tooltip .tooltip-l::after {
+  top: 5%;
 }
 
 

@@ -47,7 +47,7 @@ export default class DisplayControls extends Component {
           </button>
         </div>
         
-        {this.state.showURLField &&
+        { this.state.showURLField &&
           <BitmojiURLField
             toggleURLField={this.toggleURLField}
             changeBitmojiId={changeBitmojiId}

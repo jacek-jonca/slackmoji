@@ -27,18 +27,20 @@ export default class BitmojiURLField extends Component {
       <Fragment>
         <form
           onSubmit={this.handleSubmit}
-          className='url-form flex space-between'
+          className='url-form tooltip flex space-between'
         >
           <input
-            className='margin-m grow-1 tooltip'
+            className='margin-m grow-1'
             type='text'
             value={this.state.url}
             onChange={this.handleChange}
             placeholder='Enter URL of any image starring your Bitmoji'
           />
           <input className='btn center-self-cross' type='submit' value={btnText}/>
-          <span className='tooltip-text'>
-            <img src='./statue.gif' alt='tim-statue'/>
+          <span className='tooltip-text tooltip-l'>
+            Ctrl + Click on a Bitmoji in Slack<br/>
+            and select 'Copy Link'
+            <img src='./copy.gif' alt='tim-statue'/>
           </span>
         </form>
       </Fragment>
