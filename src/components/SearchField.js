@@ -1,35 +1,26 @@
-import React, {Component} from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default class SearchField extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {search: props.search}
+const SearchField = (props) => {
+  const [search, setSearch] = useState(props.search)
+
+  useEffect((args) => {
+    props.search !== search && setSearch(props.search)
+  }, [props.search])
+
+  const handleSearch = ({target: {value}}) => {
+    setSearch(value)
+    props.changeSearch(value)
   }
 
-  handleSearch = ({target: {value}}) => {
-    this.setState({search: value})
-    this.props.changeSearch(value)
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const newSearchProp = this.props.search !== prevProps.search
-    const sameSearchState = this.state.search === prevState.search
-
-    if (newSearchProp && sameSearchState) {
-      this.setState({search: this.props.search})
-    }
-  }
-
-  render() {
-    return(
-      <input className='search margin-m'
-        type='text'
-        name='search'
-        value={this.state.search}
-        onChange={this.handleSearch}
-        placeholder='Search for keywords'
-      />
-    )
-  }
+  return(
+    <input className='search margin-m'
+      type='text'
+      name='search'
+      value={search}
+      onChange={handleSearch}
+      placeholder='Search for keywords'
+    />
+  )
 }
 
+export default SearchField

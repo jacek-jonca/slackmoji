@@ -1,53 +1,51 @@
-import React, {Component} from 'react'
+import React, { useState, useEffect } from 'react'
 import BitmojiCard from '../components/BitmojiCard'
 
-export default class BitmojiList extends Component {
-  state = {count: 100}
-  scrollY = 0
+const BitmojiList = ({
+  bitmojis,
+  bitmojiId,
+  changeSearch,
+  search
+}) => {
+  const [count, setCount] = useState(100)
+  const scrollY = 0
+  const slicedBitmojis = bitmojis.slice(0, count)
+  
+  useEffect(() => {
+    addScrollListener()
+    return removeScrollListener
+  }, [])
 
-  componentDidMount() {
-    document.addEventListener('scroll', this.loadMoreItems)
+  const addScrollListener = () => {
+    document.addEventListener('scroll', loadMoreItems)
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.loadMoreItems)
+  const removeScrollListener = () => {
+    document.removeEventListener('scroll', loadMoreItems)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.bitmojis.length === this.props.bitmojis.length) return
-
-    if (prevState.count > 100) {
-      this.setState({count: 100})
-    }
-  }
-
-  loadMoreItems = () => {
-    const moreBitmojis = this.state.count < this.props.bitmojis.length
+  const loadMoreItems = () => {
+    const moreBitmojis = count < bitmojis.length
     const scrollDown = window.pageYOffset || document.documentElement.scrollTop
 
-    if (moreBitmojis && (this.scrollY < scrollDown)) {
-      this.setState(prevState => ({count: prevState.count + 50}))
+    if (moreBitmojis && (scrollY < scrollDown)) {
+      setCount(prevCount => prevCount + 50)
     }
   }
 
-  render() {
-    const bitmojis = this.props.bitmojis.slice(0, this.state.count)
-    return (
-      <ul
-      className='bitmoji-list flex wrap center'
-      key='bitmoji-list'
-      ref='list'
-      >
-      { bitmojis.map(b => (
+  return (
+    <ul className='bitmoji-list flex wrap center'>
+      { slicedBitmojis.map(b => (
         <BitmojiCard
           bitmoji={b}
-          bitmojiId={this.props.bitmojiId}
-          changeSearch={this.props.changeSearch}
-          search={this.props.search}
+          bitmojiId={bitmojiId}
+          changeSearch={changeSearch}
+          search={search}
           key={b.comic_id}
         />)
       )}
-      </ul>
-    )
-  }
+    </ul>
+  )
 }
+
+export default BitmojiList

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+const NoResults = () => {
   return (
     <div className='no-results flex column center-cross'>
         <h2 className='center-text'>
@@ -13,3 +13,5 @@ export default () => {
     </div>
   )
 }
+
+export default NoResults
