@@ -1,26 +1,20 @@
 import React, {Component} from 'react'
 
 export default class Loader extends Component {
-  state = {text: ''}
+  state = {index: 0}
+  fullText = "Checking on those 'mojis..."
 
   componentDidMount() {
-    this.i = 0
-    this.text = "Checking on those 'mojis..."
-    this.showText()
+    this.timeout = setTimeout(this.showText, 60)
   }
 
   showText = () => {
-    if (this.i < this.text.length) {
-      this.incrementLetter()
-      this.timeout = setTimeout(this.showText, 60)
+    if (this.state.index < this.fullText.length) {
+      this.setState(prevState => ({index: prevState.index + 1}))
+    } else {
+      this.setState({index: 0})
     }
-  }
-
-  incrementLetter = () => {
-    this.setState(prevState => {
-      const text = prevState.text + this.text.charAt(this.i)
-      return {text}
-    }, () => this.i = this.i+1)
+    this.timeout = setTimeout(this.showText, 60)
   }
 
   componentWillUnmount() {
@@ -28,6 +22,7 @@ export default class Loader extends Component {
   }
 
   render() {
+    const text = this.fullText.slice(0, this.state.index)
     return (
       <div className='loader flex column center-cross'>
         <img
@@ -36,7 +31,7 @@ export default class Loader extends Component {
           className='load-image'
         />
         <h2 className='loading-text center-text'>
-          {this.state.text}
+          {text}
         </h2>
       </div>
     )
