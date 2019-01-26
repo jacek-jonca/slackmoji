@@ -14,6 +14,7 @@ h1, h2, h3, h4 {
 input {
   font-size: 1em;
   border-radius: 5px;
+  height: 40px;
 }
 
 label {
@@ -163,30 +164,19 @@ ul {
   grid-template-areas:
     "header header header"
     "radio search selector"
-    "results results results";
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 2fr 1fr auto;
-}
-
-.container-with-url {
-  display: grid;
-  grid-template-areas:
-    "header header header"
-    "radio search selector"
     ". url ."
     "results results results";
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 2fr 1fr 1fr auto;
+  grid-template-rows: 1fr auto min-content auto;
 }
 
 .load-screen {
   display: grid;
   grid-template-areas:
     "header"
-    "loader"
-    "results";
+    "loader";
   grid-template-columns: auto;
-  grid-template-rows: 1fr auto auto;
+  grid-template-rows: 1fr auto;
 }
 
 .loader {

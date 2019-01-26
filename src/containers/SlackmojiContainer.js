@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import DisplayControls from '../containers/DisplayControls'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
@@ -6,74 +6,68 @@ import debounce from '../helpers/debounce'
 import {filterBitmojis} from '../helpers/bitmojiFilters'
 import {getBitmojiId} from '../helpers/bitmojiURLs'
 
-export default class SlackmojiContainer extends Component {
-  state = {
-    display: 'solo',
-    search: '',
-    bitmojiId: process.env.REACT_APP_BITMOJI_ID
-  }
+const SlackmojiContainer = (props) => {
+  const [display, setDisplay]     = useState('solo')
+  const [search, setSearch]       = useState('')
+  const [bitmojiId, setBitmojiId] = useState(process.env.REACT_APP_BITMOJI_ID)
+  const defaultBitmoji = process.env.REACT_APP_BITMOJI_ID === bitmojiId
 
-  componentDidMount() {
-    const bitmojiId = localStorage.getItem('bitmojiId')
-    if (bitmojiId) {
-      this.setState({bitmojiId})
-    }
-  }
+  useEffect(() => {
+    const storedBitmojiId = localStorage.getItem('bitmojiId')
+    storedBitmojiId && setBitmojiId(storedBitmojiId)
+  }, [])
 
-  changeDisplay = (e) => {
-    const display = e.target.value
-    this.setState({display})
-  }
-
-  changeSearch = (search) => {
-    this.setState({search})
+  const changeDisplay = ({target: { value }}) => {
+    setDisplay(value)
   }
   
-  changeBitmojiId = (url) => {
-    let bitmojiId
-    if (url) {
-      bitmojiId = getBitmojiId(url)
-      localStorage.setItem('bitmojiId', bitmojiId)
-    } else {
-      bitmojiId = process.env.REACT_APP_BITMOJI_ID
-      localStorage.removeItem('bitmojiId')
-    }
-    this.setState({bitmojiId})
+  const changeBitmojiId = (url) => {
+    const newBitmojiId = url ? updateBitmojiId(url) : resetBitmojiId()
+    setBitmojiId(newBitmojiId)
+  }
+  
+  const updateBitmojiId = (url) => {
+    const newBitmojiId = getBitmojiId(url)
+    localStorage.setItem('bitmojiId', newBitmojiId)
+    return newBitmojiId
+  }
+  
+  const resetBitmojiId = () => {
+    const newBitmojiId  = process.env.REACT_APP_BITMOJI_ID
+    localStorage.removeItem('bitmojiId')
+    return newBitmojiId
   }
 
-  filterBitmojis() {
-    const {display, search} = this.state
-    const bitmojis = this.props[display]
+  const bitmojiResults = () => {
+    const bitmojis = props[display]
 
     if (!search) return bitmojis
     return filterBitmojis(bitmojis, search)
   }
 
-  render() {
-    const bitmojis = this.filterBitmojis()
-    const defaultBitmoji = process.env.REACT_APP_BITMOJI_ID === this.state.bitmojiId
+  const bitmojis = bitmojiResults()
 
-    return (
-      <Fragment>
-        <DisplayControls
-          display={this.state.display}
-          changeDisplay={this.changeDisplay}
-          changeSearch={debounce(this.changeSearch, 500)}
-          changeGrid={this.props.changeGrid}
-          changeBitmojiId={this.changeBitmojiId}
-          search={this.state.search}
-          defaultBitmoji={defaultBitmoji}
-        />
-        { !!bitmojis.length 
-          ? <BitmojiList
-              bitmojis={bitmojis}
-              bitmojiId={this.state.bitmojiId}
-              changeSearch={this.changeSearch}
-              search={this.state.search}
-            />
-          : <NoResults /> 
-        }
-      </Fragment>
-    )
-  }
+  return (
+    <Fragment>
+      <DisplayControls
+        display={display}
+        changeDisplay={changeDisplay}
+        changeSearch={debounce(setSearch, 500)}
+        changeBitmojiId={changeBitmojiId}
+        search={search}
+        defaultBitmoji={defaultBitmoji}
+      />
+      { !!bitmojis.length
+        ? <BitmojiList
+            bitmojis={bitmojis}
+            bitmojiId={bitmojiId}
+            changeSearch={setSearch}
+            search={search}
+          />
+        : <NoResults />
+      }
+    </Fragment>
+  )
 }
+
+export default SlackmojiContainer

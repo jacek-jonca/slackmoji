@@ -1,71 +1,71 @@
-import React, {Component} from 'react'
+import React, { useState } from 'react'
 import {sortBySearch} from '../helpers/bitmojiFilters'
 import {imageSrc} from '../helpers/bitmojiURLs'
 
-export default class BitmojiCard extends Component {
-  state = {count: 2}
+const BitmojiCard = ({
+  bitmojiId,
+  bitmoji: {src, tags},
+  changeSearch,
+  search
+}) => {
+  const [count, setCount] = useState(2)
+  const sortedTags = sortBySearch(tags, search)
+  const displayTags = sortedTags.slice(0, count)
+  const moreTags = displayTags.length < sortedTags.length
 
-  toggleTags = () => {
-    this.setState(prevState => {
-      const {count} = prevState
-      const {bitmoji: {tags}} = this.props
-      const newCount = (count === 2) ? tags.length : 2
-      return {count: newCount}
-    })
+  const toggleTags = () => {
+    console.log('toggle');
+    setCount(prevCount => prevCount === 2 ? tags.length : 2)
   }
 
-  handleSearch = ({target}) => {
+  const handleSearch = ({target}) => {
     const search = target.innerText.replace(/"/g, '')
-    this.props.changeSearch(search)
+    changeSearch(search)
   }
 
-  handleCopy = ({target: {dataset: {tag}}}) => {
+  const handleCopy = ({target: {dataset: {tag}}}) => {
     navigator.permissions.query({name: "clipboard-write"})
-    .then(result => {
-      if (result.state == "granted" || result.state == "prompt") {
+    .then(({state}) => {
+      if (state === "granted" || state === "prompt") {
         navigator.clipboard.writeText(`/bitmoji ${tag}`)
       }
     })
   }
 
-  render() {
-    const {search, bitmojiId, bitmoji: {src, tags}} = this.props
-    const sortedTags = sortBySearch(tags, search)
-    const displayTags = sortedTags.slice(0, this.state.count)
-    const moreTags = displayTags.length < sortedTags.length
-
-    return (
-      <li className='bitmoji-card flex-container column' >
-        <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>
-        <ul className='tags flex column margin-m'>
-          {displayTags.map(tag => (
-            <li className='flex space-between' key={tag}>
-              <span onClick={this.handleSearch}>
-                {tag}
+  return (
+    <li className='bitmoji-card flex-container column' >
+      <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>
+      <ul className='tags flex column margin-m'>
+        {displayTags.map(tag => (
+          <li className='flex space-between' key={tag}>
+            <span onClick={handleSearch}>
+              {tag}
+            </span>
+            <span className='tooltip'>
+              <img
+                onClick={handleCopy}
+                data-tag={tag}
+                className='icon'
+                src='./copy-icon.png'
+                alt={displayTags[0]}
+              />
+              <span className='tooltip-text tooltip-s'>
+                Copy to Clipboard
               </span>
-              <span className='tooltip'>
-                <img
-                  onClick={this.handleCopy}
-                  data-tag={tag}
-                  className='icon'
-                  src='./copy-icon.png'
-                />
-                <span className='tooltip-text tooltip-s'>
-                  Copy to Clipboard
-                </span>
-              </span>
-            </li>)
-          )}
-          { moreTags
-            ? <li className='center-self-cross margin-ta' onClick={this.toggleTags}>
-              &#x25BC;
-            </li>
-            : <li className='center-self-cross margin-ta' onClick={this.toggleTags}>
-              &#x25B2;
-            </li>
-          }
-        </ul>
-      </li>
-    )
-  }
+            </span>
+          </li>)
+        )}
+        { moreTags
+          ? <li className='center-self-cross margin-ta' onClick={toggleTags}>
+            &#x25BC;
+          </li>
+          : <li className='center-self-cross margin-ta' onClick={toggleTags}>
+            &#x25B2;
+          </li>
+        }
+      </ul>
+    </li>
+  )
 }
+
+export default BitmojiCard

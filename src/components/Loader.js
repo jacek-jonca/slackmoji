@@ -1,39 +1,37 @@
-import React, {Component} from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default class Loader extends Component {
-  state = {index: 0}
-  fullText = "Checking on those 'mojis..."
+const Loader = () => {
+  const [index, setIndex] = useState(0)
+  const fullText = "Checking on those 'mojis..."
+  const text = fullText.slice(0, index)
+  let timeout
+  
+  useEffect(() => {
+    timeout = setTimeout(showText, 60)
+    return () => clearTimeout(timeout)
+  },[index])
 
-  componentDidMount() {
-    this.timeout = setTimeout(this.showText, 60)
-  }
-
-  showText = () => {
-    if (this.state.index < this.fullText.length) {
-      this.setState(prevState => ({index: prevState.index + 1}))
+  const showText = () => {
+    if (index < fullText.length) {
+      setIndex(prevIndex => prevIndex + 1)
     } else {
-      this.setState({index: 0})
+      setIndex(0)
     }
-    this.timeout = setTimeout(this.showText, 60)
+    timeout = setTimeout(showText, 60)
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timeout)
-  }
-
-  render() {
-    const text = this.fullText.slice(0, this.state.index)
-    return (
-      <div className='loader flex column center-cross'>
-        <img
-          src='faces/bitmoji-for-that.png'
-          alt='me'
-          className='load-image'
-        />
-        <h2 className='loading-text center-text'>
-          {text}
-        </h2>
-      </div>
-    )
-  }
+  return (
+    <div className='loader flex column center-cross'>
+      <img
+        src='faces/bitmoji-for-that.png'
+        alt='me'
+        className='load-image'
+      />
+      <h2 className='loading-text center-text'>
+        {text}
+      </h2>
+    </div>
+  )
 }
+
+export default Loader

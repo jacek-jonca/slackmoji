@@ -19,6 +19,16 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        authDomain: "slackmoji.firebaseapp.com",
+        databaseURL: "https://slackmoji.firebaseio.com",
+        projectId: "slackmoji"
+      };
+      firebase.initializeApp(config);
+    </script>
     <title>SlackMoji</title>
   </head>
   <body>

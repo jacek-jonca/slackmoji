@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import BitmojiCard from '../components/BitmojiCard'
+// can't convert to functional component because it has a ref
 
-export default class BitmojiList extends Component {
+class BitmojiList extends Component {
   state = {count: 100}
   scrollY = 0
 
@@ -51,3 +52,5 @@ export default class BitmojiList extends Component {
     )
   }
 }
+
+export default BitmojiList
