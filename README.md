@@ -6,5 +6,6 @@ Clicking on a tag returns Bitmojis with the same tag. The tags copy to clipboard
 
 Since the Bitmoji API blocks CORS, this React frontend calls an AWS endpoint configured to run a Lambda in Python requesting information from the Bitmoji API. The endpoint serves the response from the Bitmoji API (after filtering out duplicates) to the React application. Since there are thousands of results, the search function is debounced so that it won't refilter the comics for each character typed in the searchbar. There is also a loading screen to display while the data is being fetched.
 
-(See Slackmoji here)[https://slackmoji.firebaseapp.com]
-![SlackMoji Demo](https://nikym.org/img/slackmoji.gif)
+[SlackMoji Demo](https://slackmoji.firebaseapp.com)
+
+![SlackMoji Gif](https://nikym.org/img/slackmoji.gif)
