@@ -34,11 +34,10 @@ const BitmojiURLField = ({
           placeholder='Enter URL of your Bitmoji image'
         />
         <input className='btn center-self-cross' type='submit' value={btnText}/>
-        <span className='tooltip-text tooltip-l'>
-          Ctrl + Click on a Bitmoji in Slack<br/>
-          and select 'Copy Link'
+        <div className='tooltip-text tooltip-l flex-container'>
+          <p>Ctrl + Click on a Bitmoji in Slack and select 'Copy Link'</p>
           <img src='./copy.gif' alt='tim-statue'/>
-        </span>
+        </div>
       </form>
     </Fragment>
   )

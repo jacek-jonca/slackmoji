@@ -17,7 +17,7 @@ const getParams = (url) => {
 }
 
 const validateURL = (url) => {
-  const regexp = new RegExp('(render.bitstrips.com/v2/cpanel/)+[A-Za-z0-9\-]+(v1.png)')
+  const regexp = new RegExp('(render.bitstrips.com/v2/cpanel/)+[A-Za-z0-9-]+(v1.png)')
   return regexp.test(url)
 }
 
