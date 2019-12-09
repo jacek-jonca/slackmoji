@@ -5,6 +5,7 @@ import NoResults from '../components/NoResults'
 import debounce from '../helpers/debounce'
 import {filterBitmojis} from '../helpers/bitmojiFilters'
 import {getBitmojiId} from '../helpers/bitmojiURLs'
+import {searchFromParams} from '../helpers/browser'
 
 const SlackmojiContainer = (props) => {
   const [display, setDisplay]     = useState('solo')
@@ -16,6 +17,16 @@ const SlackmojiContainer = (props) => {
     const storedBitmojiId = localStorage.getItem('bitmojiId')
     storedBitmojiId && setBitmojiId(storedBitmojiId)
   }, [])
+
+  useEffect(() => {
+    const paramSearch = searchFromParams(setSearch)
+    window.addEventListener('hashchange', paramSearch)
+    return () => window.removeEventListener('hashchange', paramSearch)
+  }, [])
+
+  useEffect(() => {
+    window.location = `#${search}`
+  }, [search])
 
   const changeDisplay = ({target: { value }}) => {
     setDisplay(value)
@@ -46,7 +57,6 @@ const SlackmojiContainer = (props) => {
   }
 
   const bitmojis = bitmojiResults()
-
   return (
     <Fragment>
       <DisplayControls

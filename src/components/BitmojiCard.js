@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {sortBySearch} from '../helpers/bitmojiFilters'
 import {imageSrc} from '../helpers/bitmojiURLs'
+import {copyToClipboard} from '../helpers/browser'
 
 const BitmojiCard = ({
   bitmojiId,
@@ -23,12 +24,7 @@ const BitmojiCard = ({
   }
 
   const handleCopy = ({target: {dataset: {tag}}}) => {
-    navigator.permissions.query({name: "clipboard-write"})
-    .then(({state}) => {
-      if (state === "granted" || state === "prompt") {
-        navigator.clipboard.writeText(`/bitmoji ${tag}`)
-      }
-    })
+    copyToClipboard(`/bitmoji ${tag}`)
   }
 
   return (
