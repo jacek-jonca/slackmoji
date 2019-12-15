@@ -5,7 +5,7 @@ const Loader = () => {
   const fullText = "Checking on those 'mojis..."
   const text = fullText.slice(0, index)
   let timeout
-  
+
   useEffect(() => {
     timeout = setTimeout(showText, 60)
     return () => clearTimeout(timeout)

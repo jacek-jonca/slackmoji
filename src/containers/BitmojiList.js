@@ -10,7 +10,7 @@ const BitmojiList = ({
   const [count, setCount] = useState(100)
   const scrollY = 0
   const slicedBitmojis = bitmojis.slice(0, count)
-  
+
   useEffect(() => {
     addScrollListener()
     return removeScrollListener

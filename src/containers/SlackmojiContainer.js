@@ -20,18 +20,18 @@ const SlackmojiContainer = (props) => {
   const changeDisplay = ({target: { value }}) => {
     setDisplay(value)
   }
-  
+
   const changeBitmojiId = (url) => {
     const newBitmojiId = url ? updateBitmojiId(url) : resetBitmojiId()
     setBitmojiId(newBitmojiId)
   }
-  
+
   const updateBitmojiId = (url) => {
     const newBitmojiId = getBitmojiId(url)
     localStorage.setItem('bitmojiId', newBitmojiId)
     return newBitmojiId
   }
-  
+
   const resetBitmojiId = () => {
     const newBitmojiId  = process.env.REACT_APP_BITMOJI_ID
     localStorage.removeItem('bitmojiId')
