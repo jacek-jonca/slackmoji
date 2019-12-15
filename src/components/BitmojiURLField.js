@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import {validateURL} from '../helpers/bitmojiURLs'
+import {validateURL} from '../helpers/url'
 
 const BitmojiURLField = ({
   changeBitmojiId,

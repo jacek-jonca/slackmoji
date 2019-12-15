@@ -4,8 +4,7 @@ import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
 import debounce from '../helpers/debounce'
 import {filterBitmojis} from '../helpers/bitmojiFilters'
-import {getBitmojiId} from '../helpers/bitmojiURLs'
-import {searchFromParams} from '../helpers/browser'
+import {getBitmojiId, searchFromParams, updateSearchURL} from '../helpers/url'
 
 const SlackmojiContainer = (props) => {
   const [display, setDisplay]     = useState('solo')
@@ -25,7 +24,7 @@ const SlackmojiContainer = (props) => {
   }, [])
 
   useEffect(() => {
-    window.location = `#${search}`
+    updateSearchURL(search)
   }, [search])
 
   const changeDisplay = ({target: { value }}) => {
@@ -62,7 +61,7 @@ const SlackmojiContainer = (props) => {
       <DisplayControls
         display={display}
         changeDisplay={changeDisplay}
-        changeSearch={debounce(setSearch, 500)}
+        changeSearch={debounce(setSearch, 300)}
         changeBitmojiId={changeBitmojiId}
         search={search}
         defaultBitmoji={defaultBitmoji}

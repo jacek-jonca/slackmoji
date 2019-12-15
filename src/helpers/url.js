@@ -21,4 +21,28 @@ const validateURL = (url) => {
   return regexp.test(url)
 }
 
-export {imageSrc, getBitmojiId, validateURL}
+const copyToClipboard = text => {
+  navigator.permissions.query({name: "clipboard-write"})
+  .then(({state}) => {
+    if (state === "granted" || state === "prompt") {
+      navigator.clipboard.writeText(text)
+    }
+  })
+}
+
+const searchFromParams = (setSearch) => {
+  const {hash} = window.location
+  const searchParam = decodeURI(hash.slice(1))
+  setSearch(searchParam)
+}
+
+const updateSearchURL = (search) => window.location = `#${encodeURI(search)}`
+
+export {
+	imageSrc,
+	getBitmojiId, 
+	validateURL, 
+	copyToClipboard, 
+	searchFromParams, 
+	updateSearchURL
+}

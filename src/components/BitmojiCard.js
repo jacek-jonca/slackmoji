@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import {sortBySearch} from '../helpers/bitmojiFilters'
-import {imageSrc} from '../helpers/bitmojiURLs'
-import {copyToClipboard} from '../helpers/browser'
+import {copyToClipboard, imageSrc} from '../helpers/url'
 
 const BitmojiCard = ({
   bitmojiId,

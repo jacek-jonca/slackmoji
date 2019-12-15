@@ -11,6 +11,10 @@ h1, h2, h3, h4 {
   font-family: 'Fredoka One', cursive;
 }
 
+h1 {
+  margin: 0px;
+}
+
 input {
   font-size: 1em;
   border-radius: 5px;
@@ -139,8 +143,14 @@ ul {
   font-family: 'Fredoka One', cursive;
   padding: 10px;
 }
+
 .btn:hover {
   background: #FFC76B;
+}
+
+.btn-sm {
+  margin: 10px;
+  padding: 5px;
 }
 
 /* spacing */
