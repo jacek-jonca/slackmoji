@@ -12,11 +12,11 @@ const DisplayControls = ({
   defaultBitmoji
 }) => {
   const [showURLField, setShowURLField] = useState(false)
-  
+
   const toggleURLField = () => {
     setShowURLField(prevShowURLField => !prevShowURLField)
   }
-  
+
   return (
     <Fragment>
       <DisplayRadio
@@ -35,7 +35,7 @@ const DisplayControls = ({
           }
         </button>
       </div>
-      
+
       { showURLField &&
         <BitmojiURLField
           toggleURLField={toggleURLField}

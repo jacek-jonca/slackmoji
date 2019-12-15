@@ -14,7 +14,6 @@ const BitmojiCard = ({
   const moreTags = displayTags.length < sortedTags.length
 
   const toggleTags = () => {
-    console.log('toggle');
     setCount(prevCount => prevCount === 2 ? tags.length : 2)
   }
 
@@ -47,7 +46,7 @@ const BitmojiCard = ({
                 data-tag={tag}
                 className='icon'
                 src='./copy-icon.png'
-                alt={displayTags[0]}
+                alt='copy-icon'
               />
               <span className='tooltip-text tooltip-s'>
                 Copy to Clipboard

@@ -6,7 +6,7 @@ const RadioButton = ({display, changeDisplay, value}) => {
   const labelText = `Bitmoji ${label}`
   return (
     <div className='margin-m'>
-      <label htmlFor={labelText}>
+      <label htmlFor={`bitmoji-${label}`}>
         {labelText}
       </label>
       <input
@@ -16,7 +16,7 @@ const RadioButton = ({display, changeDisplay, value}) => {
         onChange={changeDisplay}
         checked={checked}
         className='margin-m'
-        aria-label={labelText}
+        id={`bitmoji-${label}`}
       />
     </div>
   )
