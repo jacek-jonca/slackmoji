@@ -151,6 +151,7 @@ ul {
 .btn-sm {
   margin: 10px;
   padding: 5px;
+  width: 90px;
 }
 
 /* spacing */
@@ -165,6 +166,10 @@ ul {
 
 .center-text {
   text-align: center;
+}
+
+.notice-margin {
+  margin-right: 90px;
 }
 
 /* css grid */
