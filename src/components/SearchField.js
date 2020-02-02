@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-const SearchField = (props) => {
+const SearchField = props => {
   const [search, setSearch] = useState(props.search)
 
-  useEffect((args) => {
+  useEffect(args => {
     props.search !== search && setSearch(props.search)
   }, [props.search])
 

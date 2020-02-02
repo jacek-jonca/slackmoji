@@ -14,8 +14,6 @@ const Loader = () => {
   const showText = () => {
     if (index < fullText.length) {
       setIndex(prevIndex => prevIndex + 1)
-    } else {
-      setIndex(0)
     }
     timeout = setTimeout(showText, 60)
   }
