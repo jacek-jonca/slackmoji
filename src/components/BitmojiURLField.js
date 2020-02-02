@@ -13,8 +13,8 @@ const BitmojiURLField = ({
     validateURL(value) ? setUrl(value) : alert('Please enter a valid Bitmoji URL')
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = event => {
+    event.preventDefault()
     changeBitmojiId(url)
     toggleURLField()
     setUrl('')

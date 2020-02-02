@@ -4,11 +4,11 @@ import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
 import debounce from '../helpers/debounce'
 import {filterBitmojis} from '../helpers/bitmojiFilters'
-import {getBitmojiId, searchFromParams, updateSearchURL} from '../helpers/url'
+import {getBitmojiId, searchParams, displayParams, updateSearchURL, searchFromParams} from '../helpers/url'
 
-const SlackmojiContainer = (props) => {
-  const [display, setDisplay]     = useState('solo')
-  const [search, setSearch]       = useState('')
+const SlackmojiContainer = props => {
+  const [display, setDisplay]     = useState(displayParams())
+  const [search, setSearch]       = useState(searchParams())
   const [bitmojiId, setBitmojiId] = useState(process.env.REACT_APP_BITMOJI_ID)
   const defaultBitmoji = process.env.REACT_APP_BITMOJI_ID === bitmojiId
 
@@ -18,14 +18,14 @@ const SlackmojiContainer = (props) => {
   }, [])
 
   useEffect(() => {
-    const paramSearch = searchFromParams(setSearch)
+    const paramSearch = () => searchFromParams(setDisplay, setSearch)
     window.addEventListener('hashchange', paramSearch)
     return () => window.removeEventListener('hashchange', paramSearch)
   }, [])
 
   useEffect(() => {
-    updateSearchURL(search)
-  }, [search])
+    updateSearchURL(display, search)
+  }, [display, search])
 
   const changeDisplay = ({target: { value }}) => {
     setDisplay(value)

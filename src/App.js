@@ -14,10 +14,12 @@ const App = () => {
   useEffect(() => {
     getSlackmoji()
     .then(resp => {
-      setSolo(resp.solo)
-      setFriends(resp.friends)
+      if (resp.solo) {
+        setSolo(resp.solo)
+        setFriends(resp.friends)
+      }
       setLoading(false)
-    })
+    }).catch(() => setLoading(false))
   }, [])
 
   return (

@@ -7,7 +7,7 @@ const bitmojiMatches = (bitmoji, search) => {
 }
 
 const tagMatches = (tag, search) => {
-  return tag.toLowerCase().includes(search.toLowerCase()) 
+  return tag.toLowerCase().includes(search.toLowerCase())
 }
 
 const sortBySearch = (tags, search) => {
