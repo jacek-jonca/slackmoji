@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import {sortBySearch} from '../helpers/bitmojiFilters'
-import {copyToClipboard, imageSrc} from '../helpers/url'
+import { Link } from 'react-router-dom'
+import { sortBySearch } from '../helpers/bitmojiFilters'
+import { copyToClipboard, imageSrc } from '../helpers/url'
+import { useURLParams } from '../helpers/customHooks'
 
 const BitmojiCard = ({
   bitmojiId,
-  bitmoji: {src, tags},
-  changeSearch,
-  search
+  bitmoji: { src, tags }
 }) => {
+  const { display, search } = useURLParams()
   const [count, setCount] = useState(2)
   const sortedTags = sortBySearch(tags, search)
   const displayTags = sortedTags.slice(0, count)
@@ -17,12 +18,7 @@ const BitmojiCard = ({
     setCount(prevCount => prevCount === 2 ? tags.length : 2)
   }
 
-  const handleSearch = ({target}) => {
-    const search = target.innerText.replace(/"/g, '')
-    changeSearch(search)
-  }
-
-  const handleCopy = ({target: {dataset: {tag}}}) => {
+  const handleCopy = ({ target: { dataset: { tag }}}) => {
     copyToClipboard(`/bitmoji ${tag}`)
   }
 
@@ -32,8 +28,13 @@ const BitmojiCard = ({
       <ul className='tags flex column margin-m'>
         {displayTags.map(tag => (
           <li className='flex space-between' key={tag}>
-            <span onClick={handleSearch}>
-              {tag}
+            <span>
+              <Link to={{
+                pathname: display,
+                hash: `#${encodeURI(tag)}`
+                }}>
+                {tag}
+              </Link>
             </span>
             <span className='tooltip'>
               <img

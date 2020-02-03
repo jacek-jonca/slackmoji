@@ -1,37 +1,55 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import Header from './components/Header'
 import Loader from './components/Loader'
 import SlackmojiContainer from './containers/SlackmojiContainer'
 import { getSlackmoji } from './helpers/adapter'
-
+import { filterBitmojis } from './helpers/bitmojiFilters'
+import { useURLParams } from './helpers/customHooks'
 
 const App = () => {
-  const [loading, setLoading]     = useState(true)
-  const [solo, setSolo]           = useState([])
-  const [friends, setFriends]     = useState([])
+  const [loading, setLoading] = useState(true)
+  const [bitmojis, setBitmojis] = useState([])
   const gridClass = loading ? 'load-screen' : 'container'
+  const { display, search } = useURLParams()
 
   useEffect(() => {
     getSlackmoji()
     .then(resp => {
       if (resp.solo) {
-        setSolo(resp.solo)
-        setFriends(resp.friends)
+        setBitmojis(resp)
       }
       setLoading(false)
     }).catch(() => setLoading(false))
   }, [])
 
+  const renderContainer = () => {
+    if (loading) {
+      return <Loader />
+    } else {
+      const filteredBitmojis = filterBitmojis(bitmojis[display], search)
+      return (
+        <SlackmojiContainer
+          bitmojis={filteredBitmojis}
+        />
+      )
+    }
+  }
+
   return (
     <div className={gridClass}>
       <Header />
-      { loading
-        ? <Loader />
-        : <SlackmojiContainer
-            solo={solo}
-            friends={friends}
-          />
-      }
+      <Switch>
+        <Route path='/solo'>
+          { renderContainer() }
+        </Route>
+        <Route path='/friends'>
+          { renderContainer() }
+        </Route>
+        <Route path='/'>
+          <Redirect to='/solo'/>
+        </Route>
+      </Switch>
     </div>
   )
 }

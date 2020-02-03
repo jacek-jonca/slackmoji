@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useURLParams } from '../helpers/customHooks'
+import debounce from '../helpers/debounce'
+import { updateSearchURL } from '../helpers/url'
 
-const SearchField = props => {
-  const [search, setSearch] = useState(props.search)
+const SearchField = () => {
+  const { display, search } = useURLParams()
+  const [searchTerm, setSearchTerm] = useState(search)
 
-  useEffect(args => {
-    props.search !== search && setSearch(props.search)
-  }, [props.search])
-
-  const handleSearch = ({target: {value}}) => {
-    setSearch(value)
-    props.changeSearch(value)
+  const handleSearch = ( { target: { value } } ) => {
+    setSearchTerm(value)
+    debounce(updateSearchURL(display, value), 3000)
   }
 
   return(
     <input className='search margin-m'
       type='text'
       name='search'
-      value={search}
+      value={searchTerm}
       onChange={handleSearch}
       placeholder='Search for keywords'
     />

@@ -3,17 +3,17 @@ const imageSrc = (src, bitmojiId) => {
   return url + '&width=200'
 }
 
+const getParams = url => {
+  const splitURL = url.split(/\//)
+  const path = splitURL[splitURL.length - 1]
+  return path.split(/\./)[0]
+}
+
 const getBitmojiId = url => {
   const params = getParams(url)
   const codeArr = params.split(/-/)
   const length = codeArr.length
   return codeArr.slice(length - 6, length - 1).join('-')
-}
-
-const getParams = url => {
-  const splitURL = url.split(/\//)
-  const path = splitURL[splitURL.length - 1]
-  return path.split(/\./)[0]
 }
 
 const validateURL = url => {
@@ -30,30 +30,25 @@ const copyToClipboard = text => {
   })
 }
 
-const displayParams = () => {
-  const {pathname} = window.location
-  return pathname.slice(1) === 'friends' ? 'friends' : 'solo'
+const updateBitmojiId = url => {
+  const newBitmojiId = getBitmojiId(url)
+  localStorage.setItem('bitmojiId', newBitmojiId)
+  return newBitmojiId
 }
 
-const searchParams = () => {
-  const {hash} = window.location
-  return decodeURI(hash.slice(1))
-}
-
-const searchFromParams = (setDisplay, setSearch) => {
-  setDisplay(displayParams())
-  setSearch(searchParams())
+const resetBitmojiId = () => {
+  const newBitmojiId  = process.env.REACT_APP_BITMOJI_ID
+  localStorage.removeItem('bitmojiId')
+  return newBitmojiId
 }
 
 const updateSearchURL = (display, search) => window.location = `${display}#${encodeURI(search)}`
 
 export {
-	imageSrc,
-	getBitmojiId,
-	validateURL,
 	copyToClipboard,
-	displayParams,
-	searchParams,
-  searchFromParams,
-	updateSearchURL
+	imageSrc,
+	resetBitmojiId,
+	updateBitmojiId,
+	updateSearchURL,
+	validateURL
 }

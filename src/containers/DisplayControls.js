@@ -1,14 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import DisplayRadio from '../components/DisplayRadio'
 import SearchField from '../components/SearchField'
 import BitmojiURLField from '../components/BitmojiURLField'
 
 const DisplayControls = ({
-  display,
-  changeDisplay,
-  changeSearch,
   changeBitmojiId,
-  search,
   defaultBitmoji
 }) => {
   const [showURLField, setShowURLField] = useState(false)
@@ -18,15 +14,9 @@ const DisplayControls = ({
   }
 
   return (
-    <Fragment>
-      <DisplayRadio
-        display={display}
-        changeDisplay={changeDisplay}
-      />
-      <SearchField
-        changeSearch={changeSearch}
-        search={search}
-      />
+    <>
+      <DisplayRadio />
+      <SearchField />
       <div className='bitmoji-selector center-self margin-m'>
         <button className='btn' onClick={toggleURLField}>
           { showURLField
@@ -43,7 +33,7 @@ const DisplayControls = ({
           defaultBitmoji={defaultBitmoji}
         />
       }
-    </Fragment>
+    </>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import {validateURL} from '../helpers/url'
+import { validateURL } from '../helpers/url'
 
 const BitmojiURLField = ({
   changeBitmojiId,
@@ -9,7 +9,7 @@ const BitmojiURLField = ({
   const [url, setUrl] = useState('')
   const btnText = !url && !defaultBitmoji ? 'Reset' : 'Submit'
 
-  const handleChange = ({target: {value}}) => {
+  const handleChange = ( { target: { value } } ) => {
     validateURL(value) ? setUrl(value) : alert('Please enter a valid Bitmoji URL')
   }
 

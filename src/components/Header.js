@@ -1,5 +1,5 @@
 import React from 'react'
-import {copyToClipboard} from '../helpers/url'
+import { copyToClipboard } from '../helpers/url'
 
 const Notice = () => (
   <div className='flex column grow-1 notice-margin'>
