@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <div className='header center-text'>
       <div className='flex margin-ta'>
-        <button className='btn btn-sm' onClick={handleClick}>
+        <button className='margin-m btn' onClick={handleClick}>
           Copy URL
         </button>
         { showNotice &&

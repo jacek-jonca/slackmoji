@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DisplayRadio from '../components/DisplayRadio'
+import DisplayButtons from '../components/DisplayButtons'
 import SearchField from '../components/SearchField'
 import BitmojiURLField from '../components/BitmojiURLField'
 
@@ -15,7 +15,7 @@ const DisplayControls = ({
 
   return (
     <>
-      <DisplayRadio />
+      <DisplayButtons />
       <SearchField />
       <div className='bitmoji-selector center-self margin-m'>
         <button className='btn' onClick={toggleURLField}>
