@@ -7,8 +7,8 @@ const NoResults = () => {
           Awkward... Try another search.
         </h2>
         <img
-        src='faces/awkward.png'
-        alt='awkward-face'
+          src='faces/awkward.png'
+          alt='awkward-face'
         />
     </div>
   )
