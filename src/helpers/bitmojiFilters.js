@@ -1,5 +1,9 @@
 const filterBitmojis = (bitmojis, search) => {
-  return bitmojis.filter(bitmoji => bitmojiMatches(bitmoji, search))
+  if (search) {
+    return bitmojis.filter(bitmoji => bitmojiMatches(bitmoji, search))
+  } else {
+    return bitmojis
+  }
 }
 
 const bitmojiMatches = (bitmoji, search) => {
@@ -24,4 +28,4 @@ const sortBySearch = (tags, search) => {
   return tagsArr
 }
 
-export {sortBySearch, filterBitmojis}
+export { sortBySearch, filterBitmojis }

@@ -3,9 +3,7 @@ import BitmojiCard from '../components/BitmojiCard'
 
 const BitmojiList = ({
   bitmojis,
-  bitmojiId,
-  changeSearch,
-  search
+  bitmojiId
 }) => {
   const [count, setCount] = useState(100)
   const scrollY = 0
@@ -39,8 +37,6 @@ const BitmojiList = ({
         <BitmojiCard
           bitmoji={b}
           bitmojiId={bitmojiId}
-          changeSearch={changeSearch}
-          search={search}
           key={b.comic_id}
         />)
       )}

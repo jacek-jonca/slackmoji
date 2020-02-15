@@ -1,14 +1,10 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import DisplayControls from '../containers/DisplayControls'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
-import debounce from '../helpers/debounce'
-import {filterBitmojis} from '../helpers/bitmojiFilters'
-import {getBitmojiId, searchParams, displayParams, updateSearchURL, searchFromParams} from '../helpers/url'
+import { resetBitmojiId, updateBitmojiId } from '../helpers/url'
 
-const SlackmojiContainer = props => {
-  const [display, setDisplay]     = useState(displayParams())
-  const [search, setSearch]       = useState(searchParams())
+const SlackmojiContainer = ( { bitmojis })  => {
   const [bitmojiId, setBitmojiId] = useState(process.env.REACT_APP_BITMOJI_ID)
   const defaultBitmoji = process.env.REACT_APP_BITMOJI_ID === bitmojiId
 
@@ -17,65 +13,25 @@ const SlackmojiContainer = props => {
     storedBitmojiId && setBitmojiId(storedBitmojiId)
   }, [])
 
-  useEffect(() => {
-    const paramSearch = () => searchFromParams(setDisplay, setSearch)
-    window.addEventListener('hashchange', paramSearch)
-    return () => window.removeEventListener('hashchange', paramSearch)
-  }, [])
-
-  useEffect(() => {
-    updateSearchURL(display, search)
-  }, [display, search])
-
-  const changeDisplay = ({target: { value }}) => {
-    setDisplay(value)
-  }
-
-  const changeBitmojiId = (url) => {
+  const changeBitmojiId = url => {
     const newBitmojiId = url ? updateBitmojiId(url) : resetBitmojiId()
     setBitmojiId(newBitmojiId)
   }
 
-  const updateBitmojiId = (url) => {
-    const newBitmojiId = getBitmojiId(url)
-    localStorage.setItem('bitmojiId', newBitmojiId)
-    return newBitmojiId
-  }
-
-  const resetBitmojiId = () => {
-    const newBitmojiId  = process.env.REACT_APP_BITMOJI_ID
-    localStorage.removeItem('bitmojiId')
-    return newBitmojiId
-  }
-
-  const bitmojiResults = () => {
-    const bitmojis = props[display]
-
-    if (!search) return bitmojis
-    return filterBitmojis(bitmojis, search)
-  }
-
-  const bitmojis = bitmojiResults()
   return (
-    <Fragment>
+    <>
       <DisplayControls
-        display={display}
-        changeDisplay={changeDisplay}
-        changeSearch={debounce(setSearch, 300)}
         changeBitmojiId={changeBitmojiId}
-        search={search}
         defaultBitmoji={defaultBitmoji}
       />
-      { !!bitmojis.length
-        ? <BitmojiList
-            bitmojis={bitmojis}
-            bitmojiId={bitmojiId}
-            changeSearch={setSearch}
-            search={search}
-          />
-        : <NoResults />
-      }
-    </Fragment>
+        { bitmojis.length
+          ? <BitmojiList
+              bitmojiId={bitmojiId}
+              bitmojis={bitmojis}
+            />
+          : <NoResults />
+        }
+    </>
   )
 }
 
