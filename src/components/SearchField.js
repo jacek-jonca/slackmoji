@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useURLParams } from '../helpers/customHooks'
-import debounce from '../helpers/debounce'
-import { updateSearchURL } from '../helpers/url'
+import { generateURL } from '../helpers/url'
 
 const SearchField = () => {
   const { display, search } = useURLParams()
   const [searchTerm, setSearchTerm] = useState(search)
+  const history = useHistory()
 
   useEffect(() => setSearchTerm(search), [search])
 
   const handleChange = ( { target: { value } } ) => setSearchTerm(value)
 
-  const handleSearch = () => updateSearchURL(display, searchTerm)
+  const handleSearch = () => history.push(generateURL(display, searchTerm))
 
   return(
     <div className='flex search column'>

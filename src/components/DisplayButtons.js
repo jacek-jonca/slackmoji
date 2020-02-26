@@ -1,25 +1,28 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 import { useURLParams } from '../helpers/customHooks'
+import { generateURL } from '../helpers/url'
 
 const DisplayButton = ({ value }) => {
   const { display, search } = useURLParams()
   const label = value.replace(/^\w/, c => c.toUpperCase())
   const checked = value === display
+  const history = useHistory()
+  const handleClick = () => history.push(generateURL(value, search))
 
   return (
-    <button
-      disabled={checked}
-      className={`margin-m ${checked ? 'btn-disabled' : 'btn'}`}
-      id={`bitmoji-${label}`}
-    >
-      <Link to={{
-        pathname: value,
-        hash: `#${encodeURI(search)}`
-        }}>
-        Bitmoji {label}
-      </Link>
-    </button>
+    <div className='margin-m'>
+      <label htmlFor={`bitmoji-${label}`}>
+        { `Bitmoji ${label}` }
+      </label>
+        <input
+          type='radio'
+          checked={checked}
+          className='margin-m'
+          id={`bitmoji-${label}`}
+          onChange={handleClick}
+        />
+    </div>
   )
 }
 
