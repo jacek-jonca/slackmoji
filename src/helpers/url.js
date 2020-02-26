@@ -42,13 +42,13 @@ const resetBitmojiId = () => {
   return newBitmojiId
 }
 
-const updateSearchURL = (display, search) => window.location = `${display}#${encodeURI(search)}`
+const generateURL = (display, search) => `${display}#${encodeURI(search)}`
 
 export {
-	copyToClipboard,
-	imageSrc,
-	resetBitmojiId,
-	updateBitmojiId,
-	updateSearchURL,
-	validateURL
+  copyToClipboard,
+  generateURL,
+  imageSrc,
+  resetBitmojiId,
+  updateBitmojiId,
+  validateURL
 }
