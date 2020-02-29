@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const useURLParams = () => {
@@ -8,4 +9,11 @@ const useURLParams = () => {
   return { display, search }
 }
 
-export { useURLParams }
+const useScrollListeners = callback => {
+  useEffect(() => {
+    document.addEventListener('scroll', callback)
+    return () => document.removeEventListener('scroll', callback)
+  }, [callback])
+}
+
+export { useURLParams, useScrollListeners }

@@ -10,22 +10,29 @@ const SearchField = () => {
 
   useEffect(() => setSearchTerm(search), [search])
 
-  const handleChange = ( { target: { value } } ) => setSearchTerm(value)
+  const handleChange = ({ target: { value } }) => setSearchTerm(value)
 
   const handleSearch = () => history.push(generateURL(display, searchTerm))
 
+  const handleKeyPress = ({ key }) => {
+    if (key === 'Enter') {
+      handleSearch()
+    }
+  }
+
   return(
-    <div className='flex search column'>
-      <input className='margin-m'
+    <div className='flex space-between search'>
+      <input className='margin-m grow-1'
         type='text'
         name='search'
         aria-label='search-field'
         value={searchTerm}
         onChange={handleChange}
+        onKeyPress={handleKeyPress}
         placeholder='Search for keywords'
       />
       <button
-        className='btn center-self-cross'
+        className='margin-m btn'
         onClick={handleSearch}
        >
         Search

@@ -1,4 +1,4 @@
-import React,{ memo } from 'react'
+import React, { memo } from 'react'
 import { copyToClipboard } from '../helpers/url'
 
 const Notice = memo(() => (
@@ -8,17 +8,21 @@ const Notice = memo(() => (
   </div>
 ))
 
-const Header = () => {
+const Header = ({ showSelector, toggleSelector } ) => {
   const handleClick = () => copyToClipboard(window.location)
+
   const showNotice = !!window.location.host.match('firebaseapp.com')
+
   return (
     <div className='header center-text'>
-      <div className='flex margin-ta'>
+      <div className='flex space-between margin-ta'>
         <button className='margin-m btn' onClick={handleClick}>
           Copy URL
         </button>
-        { showNotice &&
-          <Notice /> }
+        { showNotice && <Notice /> }
+        <button className='margin-m btn' onClick={toggleSelector}>
+          { showSelector ? 'Hide Bitmoji Selector' : 'Use My Bitmoji' }
+        </button>
       </div>
       <h1>
         SlackMoji

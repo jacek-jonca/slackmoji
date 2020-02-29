@@ -1,22 +1,22 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState, useCallback, useEffect, useRef } from 'react'
 
 const Loader = () => {
   const [index, setIndex] = useState(0)
+  const timeout = useRef()
   const fullText = "Checking on those 'mojis..."
   const text = fullText.slice(0, index)
-  let timeout
 
-  useEffect(() => {
-    timeout = setTimeout(showText, 60)
-    return () => clearTimeout(timeout)
-  },[index])
-
-  const showText = () => {
+  const showText = useCallback(() => {
     if (index < fullText.length) {
       setIndex(prevIndex => prevIndex + 1)
     }
-    timeout = setTimeout(showText, 60)
-  }
+    timeout.current = setTimeout(showText, 45)
+  }, [index])
+
+  useEffect(() => {
+    timeout.current = setTimeout(showText, 45)
+    return () => clearTimeout(timeout.current)
+  },[index, showText])
 
   return (
     <div className='loader flex column center-cross'>

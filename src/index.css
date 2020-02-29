@@ -148,7 +148,6 @@ ul {
   font-family: 'Fredoka One', cursive;
   padding: 10px;
   height: 40px;
-  width: 150px;
 }
 
 .btn:hover {
@@ -179,8 +178,8 @@ ul {
   display: grid;
   grid-template-areas:
     "header header header"
-    "display search selector"
-    ". url ."
+    "display search search"
+    ". selector selector"
     "results results results";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr auto min-content auto;
@@ -213,10 +212,6 @@ ul {
 
 .search {
   grid-area: search;
-}
-
-.url-form {
-  grid-area: url;
 }
 
 .bitmoji-selector {

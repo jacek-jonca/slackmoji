@@ -10,6 +10,7 @@ import { useURLParams } from './helpers/customHooks'
 const App = () => {
   const [loading, setLoading] = useState(true)
   const [bitmojis, setBitmojis] = useState([])
+  const [showSelector, setShowSelector] = useState(false)
   const gridClass = loading ? 'load-screen' : 'container'
   const { display, search } = useURLParams()
 
@@ -31,14 +32,18 @@ const App = () => {
       return (
         <SlackmojiContainer
           bitmojis={filteredBitmojis}
+          showSelector={showSelector}
+          toggleSelector={toggleSelector}
         />
       )
     }
   }
 
+  const toggleSelector = () => setShowSelector(prevShowSelector => !prevShowSelector)
+
   return (
     <div className={gridClass}>
-      <Header />
+      <Header showSelector={showSelector} toggleSelector={toggleSelector} />
       <Switch>
         <Route path='/solo'>
           { renderContainer() }
