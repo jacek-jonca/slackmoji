@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useURLParams } from '../helpers/customHooks'
 import { generateURL } from '../helpers/url'
@@ -19,6 +19,7 @@ const SearchField = () => {
       <input className='margin-m'
         type='text'
         name='search'
+        aria-label='search-field'
         value={searchTerm}
         onChange={handleChange}
         placeholder='Search for keywords'
@@ -33,4 +34,4 @@ const SearchField = () => {
   )
 }
 
-export default SearchField
+export default memo(SearchField)

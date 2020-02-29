@@ -139,7 +139,7 @@ ul {
 
 /* button */
 
-.btn, .btn-disabled {
+.btn {
   background: #fff241;
   border: 1px solid #ff7a1e;
   border-radius: 10px;
@@ -149,10 +149,6 @@ ul {
   padding: 10px;
   height: 40px;
   width: 150px;
-}
-
-.btn-disabled {
-  opacity: .7;
 }
 
 .btn:hover {

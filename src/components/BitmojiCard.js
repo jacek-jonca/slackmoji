@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { sortBySearch } from '../helpers/bitmojiFilters'
 import { copyToClipboard, imageSrc } from '../helpers/url'
@@ -63,4 +63,4 @@ const BitmojiCard = ({
   )
 }
 
-export default BitmojiCard
+export default memo(BitmojiCard)

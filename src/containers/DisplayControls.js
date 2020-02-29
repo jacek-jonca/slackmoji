@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import DisplayButtons from '../components/DisplayButtons'
 import SearchField from '../components/SearchField'
 import BitmojiURLField from '../components/BitmojiURLField'
@@ -37,4 +37,4 @@ const DisplayControls = ({
   )
 }
 
-export default DisplayControls
+export default memo(DisplayControls)

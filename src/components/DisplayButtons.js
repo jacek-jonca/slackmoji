@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useURLParams } from '../helpers/customHooks'
 import { generateURL } from '../helpers/url'
 
-const DisplayButton = ({ value }) => {
+const DisplayButton = memo(({ value }) => {
   const { display, search } = useURLParams()
   const label = value.replace(/^\w/, c => c.toUpperCase())
   const checked = value === display
@@ -24,9 +24,9 @@ const DisplayButton = ({ value }) => {
         />
     </div>
   )
-}
+})
 
-export default (props) => {
+const DisplayButtons = props => {
   return (
     <div className='display flex space-even start-cross'>
       <DisplayButton value='solo' />
@@ -34,3 +34,5 @@ export default (props) => {
     </div>
   )
 }
+
+export default memo(DisplayButtons)

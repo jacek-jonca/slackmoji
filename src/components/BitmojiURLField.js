@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { memo, useState } from 'react'
 import { validateURL } from '../helpers/url'
 
 const BitmojiURLField = ({
@@ -21,7 +21,7 @@ const BitmojiURLField = ({
   }
 
   return (
-    <Fragment>
+    <>
       <form
         onSubmit={handleSubmit}
         className='url-form tooltip flex space-between'
@@ -39,8 +39,8 @@ const BitmojiURLField = ({
           <img src='./copy.gif' alt='tim-statue'/>
         </div>
       </form>
-    </Fragment>
+    </>
   )
 }
 
-export default BitmojiURLField
+export default memo(BitmojiURLField)

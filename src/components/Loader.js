@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 
 const Loader = () => {
   const [index, setIndex] = useState(0)
@@ -32,4 +32,4 @@ const Loader = () => {
   )
 }
 
-export default Loader
+export default memo(Loader)

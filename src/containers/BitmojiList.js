@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import BitmojiCard from '../components/BitmojiCard'
 
 const BitmojiList = ({
@@ -44,4 +44,4 @@ const BitmojiList = ({
   )
 }
 
-export default BitmojiList
+export default memo(BitmojiList)

@@ -1,12 +1,12 @@
-import React from 'react'
+import React,{ memo } from 'react'
 import { copyToClipboard } from '../helpers/url'
 
-const Notice = () => (
+const Notice = memo(() => (
   <div className='flex column grow-1 notice-margin'>
     <div>Deprecation Notice: this website has been relocated to <a href='https://slackmoji.netlify.com/'>https://slackmoji.netlify.com/</a>.</div>
     <div>Please adjust your bookmarks as this url will be removed as of June 1, 2020.</div>
   </div>
-)
+))
 
 const Header = () => {
   const handleClick = () => copyToClipboard(window.location)
@@ -30,4 +30,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default memo(Header)
