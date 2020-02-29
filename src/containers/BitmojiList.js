@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { memo, useState } from 'react'
+import { useScrollListeners } from '../helpers/customHooks'
 import BitmojiCard from '../components/BitmojiCard'
 
 const BitmojiList = ({
@@ -9,19 +10,6 @@ const BitmojiList = ({
   const scrollY = 0
   const slicedBitmojis = bitmojis.slice(0, count)
 
-  useEffect(() => {
-    addScrollListener()
-    return removeScrollListener
-  }, [])
-
-  const addScrollListener = () => {
-    document.addEventListener('scroll', loadMoreItems)
-  }
-
-  const removeScrollListener = () => {
-    document.removeEventListener('scroll', loadMoreItems)
-  }
-
   const loadMoreItems = () => {
     const moreBitmojis = count < bitmojis.length
     const scrollDown = window.pageYOffset || document.documentElement.scrollTop
@@ -30,6 +18,8 @@ const BitmojiList = ({
       setCount(prevCount => prevCount + 50)
     }
   }
+
+  useScrollListeners(loadMoreItems)
 
   return (
     <ul className='bitmoji-list flex wrap center'>
@@ -44,4 +34,4 @@ const BitmojiList = ({
   )
 }
 
-export default BitmojiList
+export default memo(BitmojiList)

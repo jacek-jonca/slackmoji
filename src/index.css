@@ -139,7 +139,7 @@ ul {
 
 /* button */
 
-.btn, .btn-disabled {
+.btn {
   background: #fff241;
   border: 1px solid #ff7a1e;
   border-radius: 10px;
@@ -148,11 +148,6 @@ ul {
   font-family: 'Fredoka One', cursive;
   padding: 10px;
   height: 40px;
-  width: 150px;
-}
-
-.btn-disabled {
-  opacity: .7;
 }
 
 .btn:hover {
@@ -183,8 +178,8 @@ ul {
   display: grid;
   grid-template-areas:
     "header header header"
-    "display search selector"
-    ". url ."
+    "display search search"
+    ". selector selector"
     "results results results";
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr auto min-content auto;
@@ -217,10 +212,6 @@ ul {
 
 .search {
   grid-area: search;
-}
-
-.url-form {
-  grid-area: url;
 }
 
 .bitmoji-selector {
