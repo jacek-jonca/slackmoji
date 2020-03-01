@@ -9,15 +9,14 @@ const DisplayButton = memo(({ value }) => {
   const history = useHistory()
   const handleClick = () => history.push(generateURL(value, search))
 
-  const label = () => (value === 'solo' ? 'Solo' : 'With Friends')
+  const label = () => (value === 'solo' ? 'Solo' : 'Friends')
 
   return (
-    <div className='margin-m'>
+    <div className='margin-m flex center-cross'>
       <label htmlFor={`bitmoji-${value}`}>{ label() }</label>
         <input
           type='radio'
           checked={checked}
-          className='margin-m'
           id={`bitmoji-${value}`}
           onChange={handleClick}
         />
