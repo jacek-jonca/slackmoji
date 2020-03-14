@@ -191,6 +191,7 @@ ul {
 
 .load-image {
   animation: fade-in infinite 3s linear;
+  max-width: 300px;
 }
 
 @keyframes fade-in {

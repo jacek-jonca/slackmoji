@@ -22,13 +22,17 @@ const validateURL = url => {
 }
 
 const copyToClipboard = text => {
-  navigator.permissions.query({name: 'clipboard-write'})
-  .then(({state}) => {
-    if (state === 'granted' || state === 'prompt') {
-      navigator.clipboard.writeText(text)
-    }
-  })
+  if (navigator.permissions) {
+    navigator.permissions.query({name: 'clipboard-write'})
+    .then(({state}) => {
+      if (state === 'granted' || state === 'prompt') {
+        navigator.clipboard.writeText(text)
+      }
+    })
+  }
 }
+
+const canCopy = () => !!navigator.permissions
 
 const updateBitmojiId = url => {
   const newBitmojiId = getBitmojiId(url)
@@ -45,6 +49,7 @@ const resetBitmojiId = () => {
 const generateURL = (display, search) => `${display}#${encodeURI(search)}`
 
 export {
+  canCopy,
   copyToClipboard,
   generateURL,
   imageSrc,

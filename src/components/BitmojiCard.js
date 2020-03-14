@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { sortBySearch } from '../helpers/bitmojiFilters'
-import { copyToClipboard, imageSrc } from '../helpers/url'
+import { canCopy, copyToClipboard, imageSrc } from '../helpers/url'
 import { useURLParams } from '../helpers/customHooks'
 
 const BitmojiCard = ({
@@ -36,7 +36,7 @@ const BitmojiCard = ({
                 {tag}
               </Link>
             </span>
-            <span className='tooltip'>
+            <span className={canCopy() ? 'tooltip' : 'hide'}>
               <img
                 onClick={handleCopy}
                 data-tag={tag}
