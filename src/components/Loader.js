@@ -19,13 +19,13 @@ const Loader = () => {
   },[index, showText])
 
   return (
-    <div className='loader flex column center-cross'>
+    <div className='loader'>
       <img
         src='faces/bitmoji-for-that.png'
         alt='me'
         className='load-image'
       />
-      <h2 className='loading-text center-text'>
+      <h2>
         {text}
       </h2>
     </div>

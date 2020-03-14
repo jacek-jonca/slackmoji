@@ -20,18 +20,17 @@ const BitmojiSelector = ({
   }
 
   return (
-    <div className='bitmoji-selector tooltip flex space-between' >
+    <div className='bitmoji-selector tooltip' >
       <input
-        className='margin-m grow-1'
         type='text'
         value={url}
         onChange={handleChange}
         placeholder='Enter URL of your Bitmoji image'
         aria-label="bitmoji selector"
       />
-      <button className='btn margin-m' onClick={handleSubmit}>{ btnText }</button>
-      <div className='tooltip-text tooltip-l flex-container'>
-        <p>Ctrl + Click on a Bitmoji in Slack and select 'Copy Link'</p>
+      <button className='btn' onClick={handleSubmit}>{ btnText }</button>
+      <div className='tooltip-text'>
+        <p>Copy Bitmoji link from Slack and paste here</p>
         <img src='./copy.gif' alt='tim-statue'/>
       </div>
     </div>

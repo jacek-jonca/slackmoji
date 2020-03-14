@@ -12,7 +12,7 @@ const DisplayButton = memo(({ value }) => {
   const label = () => (value === 'solo' ? 'Solo' : 'Friends')
 
   return (
-    <div className='margin-m flex center-cross'>
+    <div className='display-radio'>
       <label htmlFor={`bitmoji-${value}`}>{ label() }</label>
         <input
           type='radio'
@@ -26,7 +26,7 @@ const DisplayButton = memo(({ value }) => {
 
 const DisplayButtons = props => {
   return (
-    <div className='display flex space-even start-cross'>
+    <div className='display'>
       <DisplayButton value='solo' />
       <DisplayButton value='friends' />
     </div>

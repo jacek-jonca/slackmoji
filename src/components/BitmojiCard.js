@@ -23,11 +23,11 @@ const BitmojiCard = ({
   }
 
   return (
-    <li className='bitmoji-card flex-container column' >
+    <li className='bitmoji-card' >
       <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>
-      <ul className='tags flex column margin-m'>
+      <ul className='tags'>
         {displayTags.map(tag => (
-          <li className='flex space-between' key={tag}>
+          <li className='tag' key={tag}>
             <span>
               <Link to={{
                 pathname: display,
@@ -44,19 +44,19 @@ const BitmojiCard = ({
                 src='./copy-icon.png'
                 alt='copy-icon'
               />
-              <span className='tooltip-text tooltip-s'>
+              <span className='tooltip-text'>
                 Copy to Clipboard
               </span>
             </span>
           </li>)
         )}
         { moreTags
-          ? <li className='center-self-cross margin-ta' onClick={toggleTags}>
-            &#x25BC;
-          </li>
-          : <li className='center-self-cross margin-ta' onClick={toggleTags}>
-            &#x25B2;
-          </li>
+        ? <li className='tag-arrow' onClick={toggleTags}>
+          &#x25BC;
+        </li>
+        : <li className='tag-arrow' onClick={toggleTags}>
+          &#x25B2;
+        </li>
         }
       </ul>
     </li>

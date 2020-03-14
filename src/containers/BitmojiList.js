@@ -22,7 +22,7 @@ const BitmojiList = ({
   useScrollListeners(loadMoreItems)
 
   return (
-    <ul className='bitmoji-list flex wrap center'>
+    <ul className='bitmoji-list'>
       { slicedBitmojis.map(b => (
         <BitmojiCard
           bitmoji={b}

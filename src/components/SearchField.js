@@ -21,8 +21,8 @@ const SearchField = () => {
   }
 
   return(
-    <div className='flex space-between search'>
-      <input className='margin-m grow-1'
+    <div className='search'>
+      <input
         type='text'
         name='search'
         aria-label='search-field'
@@ -32,7 +32,7 @@ const SearchField = () => {
         placeholder='Search for keywords'
       />
       <button
-        className='margin-m btn'
+        className='btn'
         onClick={handleSearch}
        >
         Search

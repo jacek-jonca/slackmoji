@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 const useURLParams = () => {
@@ -16,4 +16,16 @@ const useScrollListeners = callback => {
   }, [callback])
 }
 
-export { useURLParams, useScrollListeners }
+const useScreenResize = (widthLimit = 768) => {
+  const [width, setWidth] = useState(window.innerWidth)
+  const resetWidth = () => setWidth(window.innerWidth)
+
+  useEffect(() => {
+    window.addEventListener('resize', resetWidth)
+    return () => window.removeEventListener('resize', resetWidth)
+  }, [])
+
+  return width < widthLimit
+}
+
+export { useURLParams, useScrollListeners, useScreenResize }

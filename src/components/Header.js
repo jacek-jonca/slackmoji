@@ -1,23 +1,25 @@
 import React, { memo } from 'react'
 import { copyToClipboard } from '../helpers/url'
+import { useScreenResize } from '../helpers/customHooks'
 
 const Header = ({ showSelector, toggleSelector } ) => {
   const handleClick = () => copyToClipboard(window.location)
+  const isMobile = useScreenResize()
 
   return (
-    <div className='header center-text margin-ta'>
-      <div className='flex space-between'>
-        <button className='margin-m btn' onClick={handleClick}>
-          Copy URL
-        </button>
-        <div className='margin-m'>
-          <h1>Slackmoji</h1>
-          <h3>What fun new Bitmojis can I use in Slack?</h3>
-        </div>
-        <button className='margin-m btn' onClick={toggleSelector}>
-          { showSelector ? 'Hide Bitmoji Selector' : 'Use My Bitmoji' }
-        </button>
+    <div className='header'>
+      <button className={`btn${isMobile ? ' hide' : ''}`} onClick={handleClick}>
+        Copy URL
+      </button>
+      <div>
+        <h1>Slackmoji</h1>
+        <h3 className={isMobile ? 'hide' : ''}>
+          What fun new Bitmojis can I use in Slack?
+        </h3>
       </div>
+      <button className={`btn${isMobile ? ' hide' : ''}`} onClick={toggleSelector}>
+        { showSelector ? 'Hide Bitmoji Selector' : 'Use My Bitmoji' }
+      </button>
     </div>
   )
 }
