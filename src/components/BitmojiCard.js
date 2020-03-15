@@ -50,15 +50,15 @@ const BitmojiCard = ({
             </span>
           </li>)
         )}
-        { moreTags
-        ? <li className='tag-arrow' onClick={toggleTags}>
-          &#x25BC;
-        </li>
-        : <li className='tag-arrow' onClick={toggleTags}>
-          &#x25B2;
-        </li>
-        }
       </ul>
+      { moreTags
+      ? <li className='tag-arrow' onClick={toggleTags}>
+        &#x25BC;
+      </li>
+      : <li className='tag-arrow' onClick={toggleTags}>
+        &#x25B2;
+      </li>
+      }
     </li>
   )
 }
