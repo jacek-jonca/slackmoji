@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
 import { bool, func } from 'prop-types'
-import { canCopy, copyToClipboard } from '../helpers/url'
-import { useScreenResize } from '../helpers/customHooks'
+import { canCopy, copyToClipboard, useScreenResize } from '../helpers'
 
 const Header = ({ showSelector, toggleSelector } ) => {
   const handleClick = () => copyToClipboard(window.location)

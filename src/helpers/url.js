@@ -19,6 +19,8 @@ const BITMOJI_REGEX = new RegExp(
 
 const getBitmojiId = url => url.match(BITMOJI_REGEX)[1]
 
+const DEFAULT_BITMOJI = process.env.REACT_APP_BITMOJI_ID
+
 const validateUrl = url => {
   return !url || BITMOJI_REGEX.test(url)
 }
@@ -26,6 +28,7 @@ const validateUrl = url => {
 export {
   canCopy,
   copyToClipboard,
+  DEFAULT_BITMOJI,
   generateUrl,
   getBitmojiId,
   validateUrl

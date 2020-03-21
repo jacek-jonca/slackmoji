@@ -4,9 +4,7 @@ import Error from './components/Error'
 import Header from './components/Header'
 import Loader from './components/Loader'
 import SlackmojiContainer from './containers/SlackmojiContainer'
-import { filterBitmojis } from './helpers/bitmojiFilters'
-import { getSlackmoji } from './helpers/adapter'
-import { useUrlParams } from './helpers/customHooks'
+import { filterBitmojis, getBitmoji, useUrlParams } from './helpers'
 
 const App = () => {
   const [bitmojis, setBitmojis] = useState([])
@@ -17,7 +15,7 @@ const App = () => {
   const gridClass = (loading || error) ? 'load-screen' : 'container'
 
   useEffect(() => {
-    getSlackmoji()
+    getBitmoji()
     .then(resp => {
       if (resp.solo) {
         setBitmojis(resp)

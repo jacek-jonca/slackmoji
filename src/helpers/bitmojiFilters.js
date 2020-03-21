@@ -7,7 +7,7 @@ const filterBitmojis = (bitmojis, search) => {
 
 const bitmojiMatches = (bitmoji, search) => bitmoji.tags.some(tag => tagMatches(tag, search))
 
-const tagMatches = (tag, search) => tag.toLowerCase().includes(search.toLowerCase())
+const tagMatches = (tag, search) => tag.match(`${search}`, 'i')
 
 const sortBySearch = (tags, search) => {
   if (!search) return tags
@@ -23,4 +23,4 @@ const sortBySearch = (tags, search) => {
   return tagsArr
 }
 
-export { sortBySearch, filterBitmojis }
+export { filterBitmojis, sortBySearch }

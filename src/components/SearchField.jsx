@@ -1,12 +1,11 @@
 import React, { memo, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useUrlParams } from '../helpers/customHooks'
-import { generateUrl } from '../helpers/url'
+import { generateUrl, useUrlParams } from '../helpers/'
 
 const SearchField = () => {
+  const history = useHistory()
   const { display, search } = useUrlParams()
   const [searchTerm, setSearchTerm] = useState(search)
-  const history = useHistory()
 
   useEffect(() => setSearchTerm(search), [search])
 

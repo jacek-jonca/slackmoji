@@ -1,7 +1,7 @@
 import React, { memo, useState } from 'react'
 import { arrayOf, shape, string } from 'prop-types'
-import { useScrollListeners } from '../helpers/customHooks'
 import BitmojiCard from '../components/BitmojiCard'
+import { useScrollListeners } from '../helpers'
 
 const BitmojiList = ({
   bitmojiId,

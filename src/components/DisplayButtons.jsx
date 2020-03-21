@@ -1,8 +1,7 @@
 import React, { memo } from 'react'
 import { useHistory } from 'react-router-dom'
 import { string } from 'prop-types'
-import { useUrlParams } from '../helpers/customHooks'
-import { generateUrl } from '../helpers/url'
+import { generateUrl, useUrlParams } from '../helpers'
 
 const DisplayButton = memo(({ value }) => {
   const { display, search } = useUrlParams()

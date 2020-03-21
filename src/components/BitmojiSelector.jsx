@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import { bool, func } from 'prop-types'
-import { validateUrl } from '../helpers/url'
+import { validateUrl } from '../helpers'
 
 const BitmojiSelector = ({
   changeBitmojiId,

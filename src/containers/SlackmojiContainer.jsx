@@ -5,12 +5,11 @@ import SearchField from '../components/SearchField'
 import BitmojiSelector from '../components/BitmojiSelector'
 import BitmojiList from './BitmojiList'
 import NoResults from '../components/NoResults'
-import { getBitmojiId } from '../helpers/url'
+import { DEFAULT_BITMOJI, getBitmojiId } from '../helpers'
 
 const SlackmojiContainer = ({ bitmojis, showSelector, toggleSelector })  => {
-  const defaultBitmoji = process.env.REACT_APP_BITMOJI_ID
-  const [bitmojiId, setBitmojiId] = useState(defaultBitmoji)
-  const isDefaultBitmoji = defaultBitmoji === bitmojiId
+  const [bitmojiId, setBitmojiId] = useState(DEFAULT_BITMOJI)
+  const isDefaultBitmoji = DEFAULT_BITMOJI === bitmojiId
 
   useEffect(() => {
     const storedBitmojiId = localStorage.getItem('bitmojiId')
@@ -23,10 +22,7 @@ const SlackmojiContainer = ({ bitmojis, showSelector, toggleSelector })  => {
       localStorage.setItem('bitmojiId', bitmojiId)
   ), [bitmojiId, isDefaultBitmoji])
 
-  const changeBitmojiId = url => {
-    const newBitmojiId = url ? getBitmojiId(url) : defaultBitmoji
-    setBitmojiId(newBitmojiId)
-  }
+  const changeBitmojiId = url => setBitmojiId(getBitmojiId(url))
 
   return (
     <>

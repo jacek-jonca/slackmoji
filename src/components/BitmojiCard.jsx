@@ -1,9 +1,7 @@
 import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { arrayOf, shape, string } from 'prop-types'
-import { sortBySearch } from '../helpers/bitmojiFilters'
-import { canCopy, copyToClipboard } from '../helpers/url'
-import { useUrlParams } from '../helpers/customHooks'
+import { canCopy, copyToClipboard, sortBySearch, useUrlParams } from '../helpers'
 
 const BitmojiCard = ({
   bitmoji: { alt_text, src, tags },
