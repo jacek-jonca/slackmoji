@@ -6,14 +6,14 @@ import Loader from './components/Loader'
 import SlackmojiContainer from './containers/SlackmojiContainer'
 import { filterBitmojis } from './helpers/bitmojiFilters'
 import { getSlackmoji } from './helpers/adapter'
-import { useURLParams } from './helpers/customHooks'
+import { useUrlParams } from './helpers/customHooks'
 
 const App = () => {
   const [bitmojis, setBitmojis] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [showSelector, setShowSelector] = useState(false)
-  const { display, search } = useURLParams()
+  const { display, search } = useUrlParams()
   const gridClass = (loading || error) ? 'load-screen' : 'container'
 
   useEffect(() => {

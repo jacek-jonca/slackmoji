@@ -1,14 +1,14 @@
 import React, { memo } from 'react'
 import { useHistory } from 'react-router-dom'
 import { string } from 'prop-types'
-import { useURLParams } from '../helpers/customHooks'
-import { generateURL } from '../helpers/url'
+import { useUrlParams } from '../helpers/customHooks'
+import { generateUrl } from '../helpers/url'
 
 const DisplayButton = memo(({ value }) => {
-  const { display, search } = useURLParams()
+  const { display, search } = useUrlParams()
   const checked = value === display
   const history = useHistory()
-  const handleClick = () => history.push(generateURL(value, search))
+  const handleClick = () => history.push(generateUrl(value, search))
 
   const label = () => (value === 'solo' ? 'Solo' : 'Friends')
 

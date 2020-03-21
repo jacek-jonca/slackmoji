@@ -1,23 +1,25 @@
 import React, { memo, useState } from 'react'
-import { func, string } from 'prop-types'
-import { validateURL } from '../helpers/url'
+import { bool, func } from 'prop-types'
+import { validateUrl } from '../helpers/url'
 
 const BitmojiSelector = ({
   changeBitmojiId,
-  defaultBitmoji,
+  isDefaultBitmoji,
   toggleSelector
 }) => {
   const [url, setUrl] = useState('')
-  const btnText = !url && !defaultBitmoji ? 'Reset' : 'Submit'
+  const btnText = !url && !isDefaultBitmoji ? 'Reset' : 'Submit'
 
-  const handleChange = ( { target: { value } } ) => {
-    validateURL(value) ? setUrl(value) : alert('Please enter a valid Bitmoji URL')
-  }
+  const handleChange = ( { target: { value } } ) => setUrl(value)
 
   const handleSubmit = event => {
-    changeBitmojiId(url)
-    toggleSelector()
-    setUrl('')
+    if (validateUrl(url)) {
+      changeBitmojiId(url)
+      toggleSelector()
+      setUrl('')
+    } else {
+     alert('Please enter a valid Bitmoji URL')
+   }
   }
 
   return (
@@ -29,7 +31,7 @@ const BitmojiSelector = ({
         placeholder='Enter URL of your Bitmoji image'
         aria-label="bitmoji selector"
       />
-      <button className='btn' onClick={handleSubmit}>{ btnText }</button>
+      <button className='btn' onClick={handleSubmit}>{btnText}</button>
       <div className='tooltip-text'>
         <p>Copy Bitmoji link from Slack and paste here</p>
         <img src='./copy.gif' alt='tim-statue'/>
@@ -40,7 +42,7 @@ const BitmojiSelector = ({
 
 BitmojiSelector.propTypes = {
   changeBitmojiId: func.isRequired,
-  defaultBitmoji: string.isRequired,
+  isDefaultBitmoji: bool.isRequired,
   toggleSelector: func.isRequired
 }
 

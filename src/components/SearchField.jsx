@@ -1,10 +1,10 @@
 import React, { memo, useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useURLParams } from '../helpers/customHooks'
-import { generateURL } from '../helpers/url'
+import { useUrlParams } from '../helpers/customHooks'
+import { generateUrl } from '../helpers/url'
 
 const SearchField = () => {
-  const { display, search } = useURLParams()
+  const { display, search } = useUrlParams()
   const [searchTerm, setSearchTerm] = useState(search)
   const history = useHistory()
 
@@ -12,7 +12,7 @@ const SearchField = () => {
 
   const handleChange = ({ target: { value } }) => setSearchTerm(value)
 
-  const handleSearch = () => history.push(generateURL(display, searchTerm))
+  const handleSearch = () => history.push(generateUrl(display, searchTerm))
 
   const handleKeyPress = ({ key }) => {
     if (key === 'Enter') {

@@ -2,14 +2,14 @@ import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { arrayOf, shape, string } from 'prop-types'
 import { sortBySearch } from '../helpers/bitmojiFilters'
-import { canCopy, copyToClipboard, imageSrc } from '../helpers/url'
-import { useURLParams } from '../helpers/customHooks'
+import { canCopy, copyToClipboard } from '../helpers/url'
+import { useUrlParams } from '../helpers/customHooks'
 
 const BitmojiCard = ({
   bitmoji: { alt_text, src, tags },
   bitmojiId
 }) => {
-  const { display, search } = useURLParams()
+  const { display, search } = useUrlParams()
   const [count, setCount] = useState(2)
   const sortedTags = sortBySearch(tags, search)
   const displayTags = sortedTags.slice(0, count)
@@ -22,6 +22,8 @@ const BitmojiCard = ({
   const handleCopy = ({ target: { dataset: { tag }}}) => {
     copyToClipboard(`/bitmoji ${tag}`)
   }
+
+  const imageSrc = (src, bitmojiId) => src.replace(/%s/g, bitmojiId).concat('&width=200')
 
   return (
     <li className='bitmoji-card' >

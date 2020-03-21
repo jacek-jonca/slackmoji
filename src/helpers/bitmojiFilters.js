@@ -1,18 +1,13 @@
 const filterBitmojis = (bitmojis, search) => {
   if (search) {
     return bitmojis.filter(bitmoji => bitmojiMatches(bitmoji, search))
-  } else {
-    return bitmojis
   }
+  return bitmojis
 }
 
-const bitmojiMatches = (bitmoji, search) => {
-  return bitmoji.tags.some(tag => tagMatches(tag, search))
-}
+const bitmojiMatches = (bitmoji, search) => bitmoji.tags.some(tag => tagMatches(tag, search))
 
-const tagMatches = (tag, search) => {
-  return tag.toLowerCase().includes(search.toLowerCase())
-}
+const tagMatches = (tag, search) => tag.toLowerCase().includes(search.toLowerCase())
 
 const sortBySearch = (tags, search) => {
   if (!search) return tags

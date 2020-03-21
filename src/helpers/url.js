@@ -1,25 +1,4 @@
-const imageSrc = (src, bitmojiId) => {
-  const url = src.replace(/%s/g, bitmojiId)
-  return url + '&width=200'
-}
-
-const getParams = url => {
-  const splitURL = url.split(/\//)
-  const path = splitURL[splitURL.length - 1]
-  return path.split(/\./)[0]
-}
-
-const getBitmojiId = url => {
-  const params = getParams(url)
-  const codeArr = params.split(/-/)
-  const length = codeArr.length
-  return codeArr.slice(length - 6, length - 1).join('-')
-}
-
-const validateURL = url => {
-  const regexp = new RegExp('(render.bitstrips.com/v2/cpanel/)+[A-Za-z0-9-]+(v1.png)')
-  return regexp.test(url)
-}
+const canCopy = () => !!navigator.permissions
 
 const copyToClipboard = text => {
   if (navigator.permissions) {
@@ -32,28 +11,22 @@ const copyToClipboard = text => {
   }
 }
 
-const canCopy = () => !!navigator.permissions
+const generateUrl = (display, search) => `${display}#${encodeURI(search)}`
 
-const updateBitmojiId = url => {
-  const newBitmojiId = getBitmojiId(url)
-  localStorage.setItem('bitmojiId', newBitmojiId)
-  return newBitmojiId
+const BITMOJI_REGEX = new RegExp(
+  /render\.bitstrips\.com\/v2\/cpanel\/[0-9a-fA-F-]+([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})-v1\.png/
+)
+
+const getBitmojiId = url => url.match(BITMOJI_REGEX)[1]
+
+const validateUrl = url => {
+  return !url || BITMOJI_REGEX.test(url)
 }
-
-const resetBitmojiId = () => {
-  const newBitmojiId  = process.env.REACT_APP_BITMOJI_ID
-  localStorage.removeItem('bitmojiId')
-  return newBitmojiId
-}
-
-const generateURL = (display, search) => `${display}#${encodeURI(search)}`
 
 export {
   canCopy,
   copyToClipboard,
-  generateURL,
-  imageSrc,
-  resetBitmojiId,
-  updateBitmojiId,
-  validateURL
+  generateUrl,
+  getBitmojiId,
+  validateUrl
 }

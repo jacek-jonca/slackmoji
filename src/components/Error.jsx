@@ -8,7 +8,7 @@ const Error = () => (
       className='load-image'
     />
     <h2>
-      Whoops, something went wrong
+      Whoops! Something went wrong.
     </h2>
   </div>
 )
