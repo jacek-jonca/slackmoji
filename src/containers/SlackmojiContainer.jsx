@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { arrayOf, bool, func, shape, string } from 'prop-types'
 import DisplayButtons from '../components/DisplayButtons'
 import SearchField from '../components/SearchField'
 import BitmojiSelector from '../components/BitmojiSelector'
@@ -40,6 +41,25 @@ const SlackmojiContainer = ( { bitmojis, showSelector, toggleSelector })  => {
         }
     </>
   )
+}
+
+SlackmojiContainer.propTypes = {
+  bitmojis: arrayOf(
+    shape({
+      alt_text: string,
+      comic_id: string,
+      src: string,
+      tags: arrayOf(
+        string
+      )
+    })
+  ),
+  showSelector: bool.isRequired,
+  toggleSelector: func.isRequired
+}
+
+SlackmojiContainer.defaultProps = {
+  bitmojis: []
 }
 
 export default SlackmojiContainer

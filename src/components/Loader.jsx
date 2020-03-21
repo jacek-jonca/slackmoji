@@ -25,9 +25,7 @@ const Loader = () => {
         alt='me'
         className='load-image'
       />
-      <h2>
-        {text}
-      </h2>
+      <h2>{text}</h2>
     </div>
   )
 }

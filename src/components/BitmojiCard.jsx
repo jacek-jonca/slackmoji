@@ -1,12 +1,13 @@
 import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { arrayOf, shape, string } from 'prop-types'
 import { sortBySearch } from '../helpers/bitmojiFilters'
 import { canCopy, copyToClipboard, imageSrc } from '../helpers/url'
 import { useURLParams } from '../helpers/customHooks'
 
 const BitmojiCard = ({
-  bitmojiId,
-  bitmoji: { src, tags }
+  bitmoji: { alt_text, src, tags },
+  bitmojiId
 }) => {
   const { display, search } = useURLParams()
   const [count, setCount] = useState(2)
@@ -24,7 +25,7 @@ const BitmojiCard = ({
 
   return (
     <li className='bitmoji-card' >
-      <img src={imageSrc(src, bitmojiId)} alt={`bitmoji ${tags[0]}`}/>
+      <img src={imageSrc(src, bitmojiId)} alt={alt_text}/>
       <ul className='tags'>
         {displayTags.map(tag => (
           <li className='tag' key={tag}>
@@ -61,6 +62,18 @@ const BitmojiCard = ({
       }
     </li>
   )
+}
+
+BitmojiCard.propTypes = {
+  bitmoji: shape({
+    alt_text: string,
+    comic_id: string,
+    src: string,
+    tags: arrayOf(
+      string
+    )
+  }).isRequired,
+  bitmojiId: string.isRequired
 }
 
 export default memo(BitmojiCard)

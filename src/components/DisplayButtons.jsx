@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
+import { string } from 'prop-types'
 import { useURLParams } from '../helpers/customHooks'
 import { generateURL } from '../helpers/url'
 
@@ -31,6 +32,10 @@ const DisplayButtons = props => {
       <DisplayButton value='friends' />
     </div>
   )
+}
+
+DisplayButton.propTypes = {
+  value: string.isRequired
 }
 
 export default memo(DisplayButtons)

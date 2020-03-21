@@ -1,10 +1,11 @@
 import React, { memo, useState } from 'react'
+import { arrayOf, shape, string } from 'prop-types'
 import { useScrollListeners } from '../helpers/customHooks'
 import BitmojiCard from '../components/BitmojiCard'
 
 const BitmojiList = ({
-  bitmojis,
-  bitmojiId
+  bitmojiId,
+  bitmojis
 }) => {
   const [count, setCount] = useState(100)
   const scrollY = 0
@@ -32,6 +33,20 @@ const BitmojiList = ({
       )}
     </ul>
   )
+}
+
+BitmojiList.propTypes = {
+  bitmojiId: string.isRequired,
+  bitmojis: arrayOf(
+    shape({
+      alt_text: string,
+      comic_id: string,
+      src: string,
+      tags: arrayOf(
+        string
+      )
+    })
+  ).isRequired,
 }
 
 export default memo(BitmojiList)

@@ -1,4 +1,5 @@
 import React, { memo } from 'react'
+import { bool, func } from 'prop-types'
 import { canCopy, copyToClipboard } from '../helpers/url'
 import { useScreenResize } from '../helpers/customHooks'
 
@@ -23,6 +24,11 @@ const Header = ({ showSelector, toggleSelector } ) => {
       </button>
     </div>
   )
+}
+
+Header.propTypes = {
+  showSelector: bool.isRequired,
+  toggleSelector: func
 }
 
 export default memo(Header)

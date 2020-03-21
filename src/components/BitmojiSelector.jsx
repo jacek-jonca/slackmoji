@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react'
+import { func, string } from 'prop-types'
 import { validateURL } from '../helpers/url'
 
 const BitmojiSelector = ({
@@ -35,6 +36,12 @@ const BitmojiSelector = ({
       </div>
     </div>
   )
+}
+
+BitmojiSelector.propTypes = {
+  changeBitmojiId: func.isRequired,
+  defaultBitmoji: string.isRequired,
+  toggleSelector: func.isRequired
 }
 
 export default memo(BitmojiSelector)
