@@ -1,8 +1,8 @@
-const getBitmoji = () => {
+const getBitmoji = async () => {
   const url = process.env.REACT_APP_API_URL
-  return fetch(url)
-    .then(r => r.json())
-    .then(r => r.body)
+  const resp = await fetch(url)
+  const json = await resp.json()
+  return json.body
 }
 
 export { getBitmoji }

@@ -15,18 +15,20 @@ const App = () => {
   const gridClass = (loading || error) ? 'load-screen' : 'container'
 
   useEffect(() => {
-    getBitmoji()
-    .then(resp => {
-      if (resp.solo) {
-        setBitmojis(resp)
-      } else {
+    const fetchData = async () => {
+      try {
+        const data = await getBitmoji()
+        if (data.solo) {
+          setBitmojis(data)
+        } else {
+          new Error()
+        }
+      } catch {
         setError(true)
       }
       setLoading(false)
-    }).catch(() => {
-      setError(true)
-      setLoading(false)
-    } )
+    }
+    fetchData()
   }, [])
 
 

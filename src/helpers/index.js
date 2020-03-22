@@ -7,5 +7,6 @@ export {
   DEFAULT_BITMOJI,
   generateUrl,
   getBitmojiId,
+  imageSrc,
   validateUrl
 } from './url'

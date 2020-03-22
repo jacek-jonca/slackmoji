@@ -12,7 +12,7 @@ const BitmojiSelector = ({
 
   const handleChange = ( { target: { value } } ) => setUrl(value)
 
-  const handleSubmit = event => {
+  const handleSubmit = () => {
     if (validateUrl(url)) {
       changeBitmojiId(url)
       toggleSelector()

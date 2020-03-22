@@ -27,7 +27,7 @@ const Header = ({ showSelector, toggleSelector } ) => {
 
 Header.propTypes = {
   showSelector: bool.isRequired,
-  toggleSelector: func
+  toggleSelector: func.isRequired
 }
 
 export default memo(Header)

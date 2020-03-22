@@ -1,14 +1,20 @@
 import React, { memo, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { arrayOf, shape, string } from 'prop-types'
-import { canCopy, copyToClipboard, sortBySearch, useUrlParams } from '../helpers'
+
+import BitmojiTag from './BitmojiTag'
+import {
+  imageSrc,
+  sortBySearch,
+  useUrlParams
+} from '../helpers'
+
 
 const BitmojiCard = ({
   bitmoji: { alt_text, src, tags },
   bitmojiId
 }) => {
-  const { display, search } = useUrlParams()
   const [count, setCount] = useState(2)
+  const { search } = useUrlParams()
   const sortedTags = sortBySearch(tags, search)
   const displayTags = sortedTags.slice(0, count)
   const moreTags = displayTags.length < sortedTags.length
@@ -17,48 +23,21 @@ const BitmojiCard = ({
     setCount(prevCount => prevCount === 2 ? tags.length : 2)
   }
 
-  const handleCopy = ({ target: { dataset: { tag }}}) => {
-    copyToClipboard(`/bitmoji ${tag}`)
-  }
-
-  const imageSrc = (src, bitmojiId) => src.replace(/%s/g, bitmojiId).concat('&width=200')
-
   return (
     <li className='bitmoji-card' >
       <img src={imageSrc(src, bitmojiId)} alt={alt_text}/>
       <ul className='tags'>
-        {displayTags.map(tag => (
-          <li className='tag' key={tag}>
-            <span>
-              <Link to={{
-                pathname: display,
-                hash: `#${encodeURI(tag)}`
-                }}>
-                {tag}
-              </Link>
-            </span>
-            <span className={canCopy() ? 'tooltip' : 'hide'}>
-              <img
-                onClick={handleCopy}
-                data-tag={tag}
-                className='icon'
-                src='./copy-icon.png'
-                alt='copy-icon'
-              />
-              <span className='tooltip-text'>
-                Copy to Clipboard
-              </span>
-            </span>
-          </li>)
+        {displayTags.map(tag =>
+          <BitmojiTag tag={tag} key={tag} />
         )}
       </ul>
       { moreTags
-      ? <div className='tag-arrow' onClick={toggleTags}>
-        &#x25BC;
-      </div>
-      : <div className='tag-arrow' onClick={toggleTags}>
-        &#x25B2;
-      </div>
+        ? <div className='tag-arrow' onClick={toggleTags}>
+          &#x25BC;
+        </div>
+        : <div className='tag-arrow' onClick={toggleTags}>
+          &#x25B2;
+        </div>
       }
     </li>
   )

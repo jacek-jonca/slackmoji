@@ -24,7 +24,7 @@ const DisplayButton = memo(({ value }) => {
   )
 })
 
-const DisplayButtons = props => {
+const DisplayButtons = () => {
   return (
     <div className='display'>
       <DisplayButton value='solo' />
@@ -38,3 +38,4 @@ DisplayButton.propTypes = {
 }
 
 export default memo(DisplayButtons)
+export { DisplayButton }

@@ -1,16 +1,18 @@
 import React, { memo, useState, useCallback, useEffect, useRef } from 'react'
 
+
+const LOADING_TEXT = "Checking on those 'mojis..."
+
 const Loader = () => {
   const [index, setIndex] = useState(0)
   const timeout = useRef()
-  const fullText = "Checking on those 'mojis..."
-  const text = fullText.slice(0, index)
+  const text = LOADING_TEXT.slice(0, index)
 
   const showText = useCallback(() => {
-    if (index < fullText.length) {
+    if (index < LOADING_TEXT.length) {
       setIndex(prevIndex => prevIndex + 1)
+      timeout.current = setTimeout(showText, 45)
     }
-    timeout.current = setTimeout(showText, 45)
   }, [index])
 
   useEffect(() => {
@@ -31,3 +33,4 @@ const Loader = () => {
 }
 
 export default memo(Loader)
+export { LOADING_TEXT }

@@ -16,8 +16,9 @@
     "heroku-postbuild": "echo Skip build on Heroku"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "waait": "^1.0.5"
   },
   "browserslist": {
     "production": [
