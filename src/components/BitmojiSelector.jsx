@@ -32,10 +32,6 @@ const BitmojiSelector = ({
         aria-label="bitmoji selector"
       />
       <button className='btn' onClick={handleSubmit}>{btnText}</button>
-      <div className='tooltip-text'>
-        <p>Copy Bitmoji link from Slack and paste here</p>
-        <img src='./copy.gif' alt='tim-statue'/>
-      </div>
     </div>
   )
 }

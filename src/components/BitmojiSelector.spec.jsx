@@ -19,7 +19,6 @@ describe('BitmojiSelector', () => {
 
       expect(component.find('input')).toHaveLength(1)
       expect(component.find('button')).toHaveLength(1)
-      expect(component.find('img')).toHaveLength(1)
       expect(component.find('.tooltip')).toHaveLength(1)
     })
   })
